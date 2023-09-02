@@ -15,3 +15,6 @@ Usuários:
 6 Verificar/ atualizar dados cadastrais,
 7 Agendar consultas
 8 Desmarcar consultas
+
+
+ <img src="https://github.com/LaurianoCarlos/projeto-pi-clinica/blob/main/project/image/CLINICA_PI-BANCO.png" width="800" />
