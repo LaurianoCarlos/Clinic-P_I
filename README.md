@@ -27,8 +27,11 @@
 - **Desmarcação de Consultas Veterinárias:** Os clientes e funcionários devem ter a capacidade de desmarcar consultas veterinárias agendadas, liberando horários para outros clientes e atualizando o calendário da clínica veterinária.
 
 
+## Caso de Uso
+![casos de uso](project/image/caso_de_uso_clinica.jpg)
 
-## Modelo MER - Modelo Entidade-Relacionamento
+## Diagrama Entidade-Relacionamento (MER) – modelagem conceitual
+![casos de uso](project/image/modelagem_conceitual.png)
 
-![protótipo do banco de dados](project/image/CLINICA_PI-BANCO.png)
-
+## Diagrama Entidade-Relacionamento (MER) – modelagem lógico
+![casos de uso](project/image/modelagem_logica.png)
