@@ -35,3 +35,46 @@
 
 ## Diagrama Entidade-Relacionamento (MER) – modelagem lógico
 ![casos de uso](project/image/modelagem_logica.png)
+
+
+
+
+# Guia de Uso: Caminho do Usuário
+
+Este guia descreve o fluxo do usuário em nossa aplicação, desde a área não logada até a área de usuário logado.
+
+## Área Não Logada
+
+### 1. Tela de Início
+
+![Tela de Início](Paginas/home-pagina-nao-logada.png)
+
+- Ao acessar a aplicação pela primeira vez, você será direcionado para a tela de início.
+- Aqui, você pode explorar informações sobre o nosso serviço, produtos ou qualquer outra informação relevante que fornecemos aos visitantes não logados.
+
+### 2. Tela de Login
+
+![Tela de Login](Paginas/Login.PNG)
+
+- Para acessar recursos exclusivos e personalizados, você precisará fazer login.
+- Insira seu e-mail e senha.
+- Clique em "Entrar" para acessar sua conta.
+
+### 3. Cadastro de Usuário
+
+![Tela de Cadastro](Paginas/cadastro-cliente.png)
+
+- Se você ainda não tem uma conta, pode criar uma facilmente.
+- Na tela de login, clique em "Cadastre-se Grátis".
+- Preencha o formulário de registro com suas informações pessoais, como nome, e-mail, senha e outras informações.
+- Clique em "Enviar" para criar sua conta.
+
+## Usuário Logado
+
+### 4. Área de Usuário Logado
+
+![Área de Usuário Logado](Paginas/tela-cliente.PNG)
+
+- Após fazer login com sucesso, você será direcionado para a sua área pessoal.
+- Aqui, você pode acessar recursos exclusivos, configurar suas informações, realizar ações específicas.
+- Navegue pelo menu ou use os atalhos na tela para explorar as opções disponíveis.
