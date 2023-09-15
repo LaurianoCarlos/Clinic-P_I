@@ -47,14 +47,14 @@ Este guia descreve o fluxo do usuário em nossa aplicação, desde a área não 
 
 ### 1. Tela de Início
 
-![Tela de Início](Paginas/home-pagina-nao-logada.png)
+![Tela de Início](Paginas/Tela de inicio.jpeg)
 
 - Ao acessar a aplicação pela primeira vez, você será direcionado para a tela de início.
 - Aqui, você pode explorar informações sobre o nosso serviço, produtos ou qualquer outra informação relevante que fornecemos aos visitantes não logados.
 
 ### 2. Tela de Login
 
-![Tela de Login](Paginas/Login.PNG)
+![Tela de Login](Paginas/Tela login.jpeg)
 
 - Para acessar recursos exclusivos e personalizados, você precisará fazer login.
 - Insira seu e-mail e senha.
@@ -62,7 +62,7 @@ Este guia descreve o fluxo do usuário em nossa aplicação, desde a área não 
 
 ### 3. Cadastro de Usuário
 
-![Tela de Cadastro](Paginas/cadastro-cliente.png)
+![Tela de Cadastro](Paginas/cadastro usuario.jpeg)
 
 - Se você ainda não tem uma conta, pode criar uma facilmente.
 - Na tela de login, clique em "Cadastre-se Grátis".
@@ -73,7 +73,7 @@ Este guia descreve o fluxo do usuário em nossa aplicação, desde a área não 
 
 ### 4. Área de Usuário Logado
 
-![Área de Usuário Logado](Paginas/tela-cliente.PNG)
+![Área de Usuário Logado](Paginas/usuario logado.jpeg)
 
 - Após fazer login com sucesso, você será direcionado para a sua área pessoal.
 - Aqui, você pode acessar recursos exclusivos, configurar suas informações, realizar ações específicas.
