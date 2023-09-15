@@ -76,5 +76,5 @@ Este guia descreve o fluxo do usuário em nossa aplicação, desde a área não 
 ![Área de Usuário Logado](Paginas/usuario_logado.png)
 
 - Após fazer login com sucesso, você será direcionado para a sua área pessoal.
-- Aqui, você pode acessar recursos exclusivos, configurar suas informações, realizar ações específicas.
+- Aqui, você pode acessar recursos exclusivos, configurar suas informações e realizar ações específicas.
 - Navegue pelo menu ou use os atalhos na tela para explorar as opções disponíveis.
