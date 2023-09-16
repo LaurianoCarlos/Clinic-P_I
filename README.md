@@ -78,3 +78,24 @@ Este guia descreve o fluxo do usuário em nossa aplicação, desde a área não 
 - Após fazer login com sucesso, você será direcionado para a sua área pessoal.
 - Aqui, você pode acessar recursos exclusivos, configurar suas informações e realizar ações específicas.
 - Navegue pelo menu ou use os atalhos na tela para explorar as opções disponíveis.
+
+##  Área do Veterinário Logado (Administrador)
+### 7. Painel do Veterinário
+
+![Painel do Administrador](project/image/painel_adm.PNG)
+
+- Os administradores têm acesso a um painel especial com controles avançados e privilégios adicionais.
+- Aqui, você pode gerenciar usuários, revisar relatórios e muito mais.
+
+##  Área de Atendente logado
+
+### 8. Painel do Atendente
+
+![Tela do Subusuário](project/image/painel_atendente.PNG)
+
+- Os atendentes tem um acesso restrito e funcionalidades limitadas.
+- Esta tela exibe a experiência de um atendente com recursos e permissões reduzidas.
+
+As imagens fornecidas são ilustrativas e podem variar dependendo da aparência real da aplicação.
+
+Agradecemos por escolher nossa aplicação e esperamos que você tenha uma experiência agradável!
