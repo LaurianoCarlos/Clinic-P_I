@@ -82,7 +82,7 @@ Este guia descreve o fluxo do usuário em nossa aplicação, desde a área não 
 ##  Área do Veterinário Logado (Administrador)
 ### 7. Painel do Veterinário
 
-![Painel do Administrador](project/image/painel_adm.PNG)
+![Painel do Administrador](project/image/painel_adm.png)
 
 - Os administradores têm acesso a um painel especial com controles avançados e privilégios adicionais.
 - Aqui, você pode gerenciar usuários, revisar relatórios e muito mais.
@@ -91,7 +91,7 @@ Este guia descreve o fluxo do usuário em nossa aplicação, desde a área não 
 
 ### 8. Painel do Atendente
 
-![Tela do Subusuário](project/image/painel_atendente.PNG)
+![Tela do Subusuário](project/image/painel_atendente.png)
 
 - Os atendentes tem um acesso restrito e funcionalidades limitadas.
 - Esta tela exibe a experiência de um atendente com recursos e permissões reduzidas.
