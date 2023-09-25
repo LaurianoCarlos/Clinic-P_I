@@ -80,7 +80,7 @@ Este guia descreve o fluxo do usuário em nossa aplicação, desde a área não 
 - Navegue pelo menu ou use os atalhos na tela para explorar as opções disponíveis.
 
 ##  Área do Veterinário Logado (Administrador)
-### 7. Painel do Veterinário
+### 5. Painel do Veterinário
 
 ![Painel do Administrador](project/image/painel_adm.png)
 
@@ -89,7 +89,7 @@ Este guia descreve o fluxo do usuário em nossa aplicação, desde a área não 
 
 ##  Área de Atendente logado
 
-### 8. Painel do Atendente
+### 6. Painel do Atendente
 
 ![Tela do Subusuário](project/image/painel_atendente.png)
 
