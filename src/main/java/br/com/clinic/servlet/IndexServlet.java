@@ -1,17 +1,17 @@
 package br.com.clinic.servlet;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/")
-public class IndexServlet extends HttpServlet {
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.getRequestDispatcher("index.html").forward(req,resp);
+public class IndexServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Implemente a lógica para processar a solicitação aqui
+        // Por exemplo, redirecionar para a página index.html
+        request.getRequestDispatcher("/index.html").forward(request, response);
     }
 }

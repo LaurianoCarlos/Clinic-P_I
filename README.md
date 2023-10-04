@@ -28,13 +28,13 @@
 
 
 ## Caso de Uso
-![casos de uso](project/image/caso_de_uso_clinica.jpg)
+![casos de uso](src/main/webapp/resources/project/image/caso_de_uso_clinica.jpg)
 
 ## Diagrama Entidade-Relacionamento (MER) – modelagem conceitual
-![casos de uso](project/image/modelagem_conceitual.png)
+![casos de uso](src/main/webapp/resources/project/image/modelagem_conceitual.png)
 
 ## Diagrama Entidade-Relacionamento (MER) – modelagem lógico
-![casos de uso](project/image/modelagem_logica.png)
+![casos de uso](src/main/webapp/resources/project/image/modelagem_logica.png)
 
 
 
@@ -47,14 +47,14 @@ Este guia descreve o fluxo do usuário em nossa aplicação, desde a área não 
 
 ### 1. Tela de Início
 
-![Tela de Início](project/image/tela_de_inicio.png)
+![Tela de Início](src/main/webapp/resources/project/image/tela_de_inicio.png)
 
 - Ao acessar a aplicação pela primeira vez, você será direcionado para a tela de início.
 - Aqui, você pode explorar informações sobre o nosso serviço, produtos ou qualquer outra informação relevante que fornecemos aos visitantes não logados.
 
 ### 2. Tela de Login
 
-![Tela de Login](project/image/tela_login.png)
+![Tela de Login](src/main/webapp/resources/project/image/tela_login.png)
 
 - Para acessar recursos exclusivos e personalizados, você precisará fazer login.
 - Insira seu e-mail e senha.
@@ -62,7 +62,7 @@ Este guia descreve o fluxo do usuário em nossa aplicação, desde a área não 
 
 ### 3. Cadastro de Usuário
 
-![Tela de Cadastro](project/image/cadastro_usuario.png)
+![Tela de Cadastro](src/main/webapp/resources/project/image/cadastro_usuario.png)
 
 - Se você ainda não tem uma conta, pode criar uma facilmente.
 - Na tela de login, clique em "Cadastre-se Grátis".
@@ -73,7 +73,7 @@ Este guia descreve o fluxo do usuário em nossa aplicação, desde a área não 
 
 ### 4. Área de Usuário Logado
 
-![Área de Usuário Logado](project/image/usuario_logado.png)
+![Área de Usuário Logado](src/main/webapp/resources/project/image/usuario_logado.png)
 
 - Após fazer login com sucesso, você será direcionado para a sua área pessoal.
 - Aqui, você pode acessar recursos exclusivos, configurar suas informações e realizar ações específicas.
@@ -82,7 +82,7 @@ Este guia descreve o fluxo do usuário em nossa aplicação, desde a área não 
 ##  Área do Veterinário Logado (Administrador)
 ### 5. Painel do Veterinário
 
-![Painel do Administrador](project/image/painel_adm.png)
+![Painel do Administrador](src/main/webapp/resources/project/image/painel_adm.png)
 
 - Os administradores têm acesso a um painel especial com controles avançados e privilégios adicionais.
 - Aqui, você pode gerenciar usuários, revisar relatórios e muito mais.
@@ -91,7 +91,7 @@ Este guia descreve o fluxo do usuário em nossa aplicação, desde a área não 
 
 ### 6. Painel do Atendente
 
-![Tela do Subusuário](project/image/painel_atendente.png)
+![Tela do Subusuário](src/main/webapp/resources/project/image/painel_atendente.png)
 
 - Os atendentes tem um acesso restrito e funcionalidades limitadas.
 - Esta tela exibe a experiência de um atendente com recursos e permissões reduzidas.
