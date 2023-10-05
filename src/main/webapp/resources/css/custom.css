@@ -45,6 +45,7 @@
     color: #fff !important;
 }
 
+
 /*BOTOES*/
 
 .btn-secondary{
@@ -52,3 +53,14 @@
     border: none;
 }
 
+/*LINKS*/
+.link-light:hover{
+    color: var(--secondary) !important;
+}
+/*Paddiing*/
+.pt-6 {
+    padding-top: 50px;
+}
+.pt-7 {
+    padding-top: 100px;
+}

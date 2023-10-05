@@ -1,5 +1,5 @@
 /*load-header.js*/
-     fetch("/layout/header.html")
+     fetch("resources/layout/header.html")
     .then(response => response.text())
     .then(data => {
         const headerContainer = document.getElementById("header-container");
@@ -7,7 +7,7 @@
     });
 
 
-    fetch("/layout/footer.html")
+    fetch("resources/layout/footer.html")
     .then(response => response.text())
     .then(data => {
         const headerContainer = document.getElementById("footer-container");

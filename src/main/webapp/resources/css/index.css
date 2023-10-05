@@ -1,35 +1,69 @@
-/*CONFIGURAÇÔES DO SITE*/
-body{
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;1,300&display=swap');
+
+
+/*CONFIGURAÇÔES DO SITE
+----------------------------*/
+body {
     background-color: var(--background) !important;
-    color: var(--text) !important;
+    color: var(--text);
+    font-family: 'Roboto', sans-serif !important;
+}
+
+h1 {
+    font-size: 60px;
+    font-weight: 500;
+    font-style: oblique;
+}
+
+h2 {
+    font-size: 50px;
+    font-weight: 300;
+}
+
+h3 {
+    font-size: 30px;
+    font-weight: 300;
+}
+
+p {
+    font-size: 22px;
+    font-weight: 300;
 }
 
 .card-img {
-    max-width: 150px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    max-width: 120px;
+    padding: 20px;
     color: white;
 }
 
-/* CUSTOMIZE THE CAROUSEL */
-        /* Carousel base class */
-        .carousel {
-            margin-bottom: 4rem;
-        }
-        /* Since positioning the image, we need to help out the caption */
-        .carousel-caption {
-            bottom: 3rem;
-            z-index: 10;
-        }
+/*CAROUSEL
+-------------------------------------------------- */
+.carousel {
+    margin-bottom: 4rem;
+  }
+  
+  .carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+  }
+  
+  .carousel-caption > h1 {
+    font-weight: bold;
+    color:#2190A4;
+  }
+  .carousel-caption > p {
+    font-weight: bold;
+    color:#2190A4;
+  }
+  .carousel-item {
+    height: 40rem;
+  }
 
-        /* Declare heights because of positioning of img element */
-        .carousel-item {
-            height: 32rem;
-        }
-        .carousel-item > img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            min-width: 100%;
-            height: 32rem;
-        }
+  .carousel-item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 40rem;
+  }
+  
