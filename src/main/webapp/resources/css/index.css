@@ -4,66 +4,64 @@
 /*CONFIGURAÇÔES DO SITE
 ----------------------------*/
 body {
-    background-color: var(--background) !important;
-    color: var(--text);
-    font-family: 'Roboto', sans-serif !important;
+  background-color: var(--background) !important;
+  color: var(--text);
+  font-family: 'Roboto', sans-serif !important;
+}
+header{
+  font-size: 20px;
 }
 
 h1 {
-    font-size: 60px;
-    font-weight: 500;
-    font-style: oblique;
+  font-size: 60px;
+  font-weight: 500;
+  font-style: oblique;
 }
 
 h2 {
-    font-size: 50px;
-    font-weight: 300;
+  font-size: 50px;
+  font-weight: 300;
 }
 
 h3 {
-    font-size: 30px;
-    font-weight: 300;
+  font-size: 30px;
+  font-weight: 300;
 }
 
 p {
-    font-size: 22px;
-    font-weight: 300;
+  font-size: 22px;
+  font-weight: 300;
 }
 
 .card-img {
-    max-width: 120px;
-    padding: 20px;
-    color: white;
+  max-width: 120px;
+  padding: 20px;
+  color: white;
 }
 
 /*CAROUSEL
 -------------------------------------------------- */
 .carousel {
-    margin-bottom: 4rem;
-  }
-  
-  .carousel-caption {
-    bottom: 3rem;
-    z-index: 10;
-  }
-  
-  .carousel-caption > h1 {
-    font-weight: bold;
-    color:#2190A4;
-  }
-  .carousel-caption > p {
-    font-weight: bold;
-    color:#2190A4;
-  }
-  .carousel-item {
-    height: 40rem;
-  }
+  margin-bottom: 4rem;
+}
 
-  .carousel-item > img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    height: 40rem;
-  }
-  
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+.carousel-caption>h1 {
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.carousel-item {
+  height: 40rem;
+}
+
+.carousel-item>img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 40rem;
+}
