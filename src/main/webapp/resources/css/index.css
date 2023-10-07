@@ -1,5 +1,72 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;1,300&display=swap');
+@import "/webjars/bootstrap/5.3.1/scss";
 
+
+/*CORES DO SITE*/
+:root{
+    --primary: #2190A4;
+    --secondary: #5DCF71;
+    --tertiary: #54595F;
+    --success: #0099DD;
+    --info: #A1C7E0;
+    --warning: #FF9933;
+    --danger: #E3371E;
+    --background:#E6F9FD;
+    --text:#505763;
+    --titleClinic:#2190A4;
+}
+
+
+.bg-primary, .btn-primary{
+    background-color: var(--primary) !important;
+}
+.bg-secondary, .btn-secondary{
+    background-color: var(--secondary) !important;
+}
+.bg-tertiary, .btn-tertiary{
+    background-color: var(--tertiary) !important;
+}
+.bg-success, .btn-success{
+    background-color: var(--success) !important;
+}
+.bg-info, .btn-info{
+    background-color: var(--info) !important;
+}
+.bg-warning, .btn-warning{
+    background-color: var(--warning) !important;
+}
+.bg-danger .btn-danger{
+    background-color: var(--danger) !important;
+}
+.nav-link {
+    color: var(--primary) !important ;
+}
+.nav-link:hover{
+    color: var(--warning) !important ;
+}
+
+.text-white{
+    color: #fff !important;
+}
+
+/*BOTOES*/
+
+.btn-secondary{
+    background-color: var(--secondary) !important;
+    border: none;
+}
+
+/*LINKS*/
+.link-light:hover{
+    color: var(--secondary) !important;
+}
+/*Paddiing*/
+.pt-6 {
+    padding-top: 50px;
+}
+.pt-7 {
+    padding-top: 100px;
+}
 
 /*CONFIGURAÇÔES DO SITE
 ----------------------------*/
@@ -9,7 +76,7 @@ body {
   font-family: 'Roboto', sans-serif !important;
 }
 header{
-  font-size: 20px;
+  font-size: 22px;
 }
 
 h1 {
