@@ -41,11 +41,10 @@ public class CreateClientServlet extends HttpServlet {
         try {
             userId = userDao.createUser(user); // Obtém o ID do usuário criado
         } catch (SQLException e) {
-            // Lide com exceções de banco de dados aqui, se necessário
             e.printStackTrace();
-            return; // Saia da função se ocorrer um erro
+            //trata erro depois
+            return;
         }
-
 
         Client client = new Client();
         client.setName(name);
@@ -53,13 +52,13 @@ public class CreateClientServlet extends HttpServlet {
         client.setAddress(address);
         client.setPhone(phone);
         client.setEmail(email);
-        client.setUserId(userId); // Define o ID do usuário no objeto Client
+        client.setUserId(userId);
 
-        // Chama o método createClient para inserir o cliente no banco de dados
+
         ClientDao clientDao = new ClientDao();
         clientDao.createClient(client);
 
-        // Redireciona de volta para a página inicial ou outra página apropriada
+        //redirecionamento
         resp.sendRedirect("/");
     }
 }

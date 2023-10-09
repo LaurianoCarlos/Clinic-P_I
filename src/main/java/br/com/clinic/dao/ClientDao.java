@@ -68,8 +68,10 @@ public class ClientDao {
             return clients;
 
         } catch (Exception e) {
-            System.out.println("ACAIUUUUUUUUUUUUUUUUUUU");
-            e.printStackTrace(); // Isso registrará a exceção no console
+            System.out.println("ERRO AO CADASTRAR!");
+            e.printStackTrace();
+
+            //RETORNA UMA LISTA VAZIA
             return Collections.emptyList();
         }
 

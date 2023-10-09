@@ -28,7 +28,7 @@ public class UserDao {
             if (rowsAffected == 1) {
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
                 if (resultSet.next()) {
-                    generatedId = resultSet.getInt(1); // Obtém o ID gerado
+                    generatedId = resultSet.getInt(1); //Obtém o ID gerado
                 }
             }
 
@@ -38,6 +38,6 @@ public class UserDao {
             throw new RuntimeException(e);
         }
 
-        return generatedId; // Retorna o ID do usuário criado
+        return generatedId; //Retorna o ID do usuário criado
     }
 }
