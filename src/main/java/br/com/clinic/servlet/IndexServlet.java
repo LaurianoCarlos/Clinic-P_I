@@ -10,8 +10,7 @@ import java.io.IOException;
 public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Implemente a lógica para processar a solicitação aqui
-        // Por exemplo, redirecionar para a página index.html
+
         request.getRequestDispatcher("/index.html").forward(request, response);
     }
 }

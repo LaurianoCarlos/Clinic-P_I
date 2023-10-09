@@ -1,2 +1,7 @@
-br\com\clinic\dao\test.class
-br\com\clinic\model\test.class
+br\com\clinic\servlet\ListClientServlet.class
+br\com\clinic\dao\UserDao.class
+br\com\clinic\servlet\CreateClientServlet.class
+br\com\clinic\servlet\LoginServlet.class
+br\com\clinic\dao\ClientDao.class
+br\com\clinic\model\Client.class
+br\com\clinic\model\User.class
