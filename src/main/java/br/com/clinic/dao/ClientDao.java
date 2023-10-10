@@ -41,7 +41,6 @@ public class ClientDao {
 
             Connection connection = DatabaseDao.getConnection();
 
-
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 
             ResultSet resultSet = preparedStatement.executeQuery();

@@ -34,6 +34,14 @@ public class Client  {
         this.userId = userId;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -81,4 +89,6 @@ public class Client  {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
+
 }
