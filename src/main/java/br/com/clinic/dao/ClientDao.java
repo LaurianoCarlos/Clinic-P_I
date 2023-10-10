@@ -14,9 +14,10 @@ public class ClientDao {
         String sql = "INSERT INTO CLIENT (NAME,EMAIL,CPF,ADDRESS,PHONE,USER_ID) VALUES (?,?,?,?,?,?)";
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test","sa","sa");
+            Connection connection = DatabaseDao.getConnection();
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
             preparedStatement.setString(1, client.getName());
             preparedStatement.setString(2, client.getEmail());
             preparedStatement.setString(3, client.getCpf());
@@ -26,7 +27,7 @@ public class ClientDao {
 
             preparedStatement.execute();
 
-            connection.close();
+            DatabaseDao.disconnect(connection);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -38,7 +39,7 @@ public class ClientDao {
 
         try {
 
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            Connection connection = DatabaseDao.getConnection();
 
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
@@ -63,7 +64,7 @@ public class ClientDao {
 
             }
 
-            connection.close();
+            DatabaseDao.disconnect(connection);
 
             return clients;
 
