@@ -24,7 +24,7 @@ public class AnimalDao {
             preparedStatement.setString(1, animal.getName());
             preparedStatement.setString(2, animal.getSpecie());
             preparedStatement.setString(3, animal.getSize());
-            preparedStatement.setString(4, animal.getId());
+            preparedStatement.setString(4, animal.getIdClient());
 
             preparedStatement.execute();
 

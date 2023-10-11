@@ -5,11 +5,16 @@ public class Animal {
     private String id;
     private String name;
     private String specie;
-
     private String size;
 
     private String idClient;
 
+    public Animal(String name, String specie, String size, String idClient) {
+        this.name = name;
+        this.specie = specie;
+        this.size = size;
+        this.idClient = idClient;
+    }
     public Animal(String id, String name, String specie, String size, String idClient) {
         this.id = id;
         this.name = name;

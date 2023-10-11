@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulário de Cadastro de Animal</title>
+</head>
+<body>
+<h2>Cadastro de Animal</h2>
+<form action="/create-animal" method="post">
+
+    <c:out value="${idClient}" var="clientId" />
+    <input type="hidden" name="idClient" value="${clientId}">
+
+    <label for="name">Nome:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="specie">Espécie:</label>
+    <input type="text" id="specie" name="specie" required><br><br>
+
+    <label for="size">Tamanho:</label>
+    <input type="text" id="size" name="size" required><br><br>
+
+    <input type="submit" value="Cadastrar">
+</form>
+</body>
+</html>
