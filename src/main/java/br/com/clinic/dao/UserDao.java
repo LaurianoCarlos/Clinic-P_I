@@ -34,10 +34,31 @@ public class UserDao {
 
             DatabaseDao.disconnect(connection);
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
 
         return generatedId;     //Returns the ID of the created user
+    }
+    public void deleteUserById(String userId){
+
+        String sql = "DELETE USERS WHERE ID = ?";
+
+        try {
+            Connection connection = DatabaseDao.getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, userId);
+
+            preparedStatement.execute();
+
+            DatabaseDao.disconnect(connection);
+
+            System.out.println("Deleted successfully");
+        }catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("ERROR WHEN TRYING TO DELETE!");
+        }
     }
 }

@@ -18,12 +18,13 @@ public class ListAnimalServlet extends HttpServlet {
     @Override
     protected void doGet(@NotNull HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String client = req.getParameter("clientId");
+        String clientId = req.getParameter("clientId");
+        System.out.println("Id do cliente:" + clientId);
         String nameClient = req.getParameter("nameClient");
-        List<Animal> animals = new AnimalDao().findAllAnimals(client);
+        List<Animal> animals = new AnimalDao().findAllAnimals(clientId);
         req.setAttribute("animals", animals);
         req.setAttribute("nameClient", nameClient);
-
+        req.setAttribute("clientId", clientId);
 
         System.out.println("Número de animais02 encontrados: " + animals.size());
         req.getRequestDispatcher("list-animals.jsp").forward(req, resp);

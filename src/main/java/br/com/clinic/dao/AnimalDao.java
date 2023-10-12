@@ -14,7 +14,7 @@ public class AnimalDao {
 
     public void createAnimal(Animal animal){
 
-        String sql = "INSERT INTO ANIMAL (NAME,SPECIE,SIZE,IDCLIENT) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO ANIMAL (NAME,SPECIE,SIZE,CLIENT_ID) VALUES (?,?,?,?)";
 
         try {
             Connection connection = DatabaseDao.getConnection();
@@ -37,7 +37,7 @@ public class AnimalDao {
 
     public List<Animal> findAllAnimals(String clientId) {
 
-        String SQL = "SELECT ID, NAME, SPECIE, SIZE FROM ANIMAL WHERE IDCLIENT = ?";
+        String SQL = "SELECT ID, NAME, SPECIE, SIZE FROM ANIMAL WHERE CLIENT_ID = ?";
 
         try (Connection connection = DatabaseDao.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
@@ -60,11 +60,56 @@ public class AnimalDao {
                 return animals;
             }
         } catch (Exception e) {
-            System.out.println("ERRO AO CADASTRAR!");
+            System.out.println("ERRO LIST ANIMALS!");
             e.printStackTrace();
 
             // RETORNA UMA LISTA VAZIA
             return Collections.emptyList();
+        }
+    }
+    public void deleteAnimalById(String animalId){
+
+        String sql = "DELETE ANIMAL WHERE ID = ?";
+
+        try {
+            Connection connection = DatabaseDao.getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, animalId);
+
+            preparedStatement.execute();
+
+            DatabaseDao.disconnect(connection);
+
+            System.out.println("Deleted Animal successfully");
+
+        }catch (SQLException e){
+
+            e.printStackTrace();
+            System.out.println("ERROR WHEN TRYING TO DELETE!");
+        }
+    }
+    public void deleteAnimalsByClientId(String clientId) {
+        String sql = "DELETE FROM ANIMAL WHERE CLIENT_ID = ?";
+
+        try {
+            Connection connection = DatabaseDao.getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, clientId);
+
+            preparedStatement.executeUpdate();
+
+            DatabaseDao.disconnect(connection);
+
+
+            System.out.println("Animals deleted successfully");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("ERROR WHEN TRYING TO DELETE ANIMALS!");
         }
     }
 

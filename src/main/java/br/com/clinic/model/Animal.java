@@ -1,12 +1,10 @@
 package br.com.clinic.model;
 
 public class Animal {
-
     private String id;
     private String name;
     private String specie;
     private String size;
-
     private String idClient;
 
     public Animal(String name, String specie, String size, String idClient) {

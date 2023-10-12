@@ -68,12 +68,56 @@ public class ClientDao {
             return clients;
 
         } catch (Exception e) {
-            System.out.println("ERRO AO CADASTRAR!");
+            System.out.println("ERROR WHEN TRYING TO REGISTER!");
             e.printStackTrace();
 
             //RETORNA UMA LISTA VAZIA
             return Collections.emptyList();
         }
 
+    }
+    public void deleteClientById(String clientId){
+
+        String sql = "DELETE CLIENT WHERE ID = ?";
+
+        try {
+            Connection connection = DatabaseDao.getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, clientId);
+
+            preparedStatement.execute();
+
+            DatabaseDao.disconnect(connection);
+
+            System.out.println("Deleted successfully");
+
+        }catch (SQLException e){
+
+            e.printStackTrace();
+            System.out.println("ERROR WHEN TRYING TO DELETE!");
+        }
+    }
+    public void updateClient(Client client){
+        String sql = " UPDATE CLIENT SET ADDRESS = ?, PHONE = ? WHERE ID = ?";
+
+        try {
+            Connection connection = DatabaseDao.getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, client.getAddress());
+            preparedStatement.setString(2, client.getPhone());
+            preparedStatement.setString(3, client.getId());
+
+            preparedStatement.execute();
+
+            DatabaseDao.disconnect(connection);
+
+        } catch (Exception e) {
+            System.out.println("ERRO UPDATE CLIENT");
+           System.out.println(e.getMessage());
+        }
     }
 }

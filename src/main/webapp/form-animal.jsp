@@ -1,14 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
     <title>Formulário de Cadastro de Animal</title>
 </head>
 <body>
-<h2>Cadastro de Animal</h2>
+<h2>Cadastro de Animal id = ${param.clientId}</h2>
+
 <form action="/create-animal" method="post">
 
-    <c:out value="${idClient}" var="clientId" />
-    <input type="hidden" name="idClient" value="${clientId}">
+    <input type="hidden" name="clientId" value="${param.clientId}">
 
     <label for="name">Nome:</label>
     <input type="text" id="name" name="name" required><br><br>

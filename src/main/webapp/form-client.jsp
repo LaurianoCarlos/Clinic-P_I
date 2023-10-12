@@ -9,6 +9,16 @@
 <body>
 <div class="container">
     <h1>Cadastro de Usuário/Cliente</h1>
+    <%
+        String clientId = request.getParameter("clientId");
+        String name = request.getParameter("nameClient");
+        String email = request.getParameter("email");
+        String cpf = request.getParameter("cpfClient");
+        String address = request.getParameter("address");
+        String phone = request.getParameter("phone");
+    %>
+
+    <% if (clientId == null) { %>
     <form action="/create-client" method="POST">
         <!-- Campos do Cliente -->
         <div class="mb-3">
@@ -38,8 +48,38 @@
         </div>
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
-</div>
+    <% } %>
 
+    <% if (clientId != null) { %>
+    <form method="post" action="/create-client">
+
+        <input type="text" class="form-control" name="clientId" value="<%= clientId %>">
+
+        <div class="mb-3">
+            <label class="form-label">Nome:</label>
+            <input type="text" class="form-control" name="name" required value="<%= name %>" disabled>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email:</label>
+            <input type="email" class="form-control" name="email" required value="<%= email %>" disabled>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">CPF:</label>
+            <input type="text" class="form-control" name="cpf" required value="<%= cpf %>" disabled>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Endereço:</label>
+            <input type="text" class="form-control" name="address" required value="<%= address %>">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Telefone:</label>
+            <input type="text" class="form-control" name="phone" required value="<%= phone %>">
+        </div>
+        <button type="submit" class="btn btn-primary">Atualizar</button>
+    </form
+    <% } %>
+
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.min.js"></script>
 </body>

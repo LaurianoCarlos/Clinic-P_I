@@ -1,19 +1,13 @@
 package br.com.clinic.model;
 
 public class Client  {
-
     private String id;
     private String name;
     private String email;
     private String cpf;
     private String address;
     private String phone;
-
     private int userId;
-
-    public Client() {
-
-    }
 
     public Client(String name, String email, String cpf, String address, String phone, int userId) {
         this.name = name;
@@ -32,6 +26,12 @@ public class Client  {
         this.address = address;
         this.phone = phone;
         this.userId = userId;
+    }
+
+    public Client(String address, String phone, String id) {
+        this.address = address;
+        this.phone = phone;
+        this.id = id;
     }
 
     public String getId() {
@@ -89,6 +89,5 @@ public class Client  {
     public void setUserId(int userId) {
         this.userId = userId;
     }
-
 
 }

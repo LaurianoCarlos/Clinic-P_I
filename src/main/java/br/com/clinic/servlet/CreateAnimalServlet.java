@@ -16,18 +16,17 @@ public class CreateAnimalServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String idClient = req.getParameter("idClient");
+        String clientId = req.getParameter("clientId");
+        System.out.println("id: " + clientId);
         String name = req.getParameter("name");
         String specie = req.getParameter("specie");
         String size = req.getParameter("size");
 
-
-
-        Animal animal = new Animal(name,specie,size,idClient);
+        Animal animal = new Animal(name,specie,size,clientId);
         AnimalDao animalDao = new AnimalDao();
 
         animalDao.createAnimal(animal);
 
-        resp.sendRedirect("list-animals");
+        resp.sendRedirect("list-animals?clientId=" + clientId);
     }
 }

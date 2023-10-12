@@ -19,46 +19,42 @@ public class CreateClientServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        String id = req.getParameter("clientId");
+
+        System.out.println("Id: " + id);
 
         String name = req.getParameter("name");
         String cpf = req.getParameter("cpf");
         String address = req.getParameter("address");
         String phone = req.getParameter("phone");
 
+        //data User
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String userType = "client";
 
+        User user = new User(email, password, userType);
 
-        User user = new User();
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setUserType(userType);
 
-        int userId; // Variável para armazenar o ID do usuário
+        int userId = 0;
+        if (id == null) {
 
-        UserDao userDao = new UserDao();
-        try {
-            userId = userDao.createUser(user); // Obtém o ID do usuário criado
-        } catch (SQLException e) {
-            e.printStackTrace();
-            //trata erro depois
-            return;
+            userId = 0;
+            try {
+                userId = new UserDao().createUser(user);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            Client client = new Client(name, email, cpf, address, phone, userId);
+
+            new ClientDao().createClient(client);
+            resp.sendRedirect("/");
+
+        } else {
+
+            Client client = new Client(address,phone,id);
+            new ClientDao().updateClient(client);
+            resp.sendRedirect("/");
         }
-
-        Client client = new Client();
-        client.setName(name);
-        client.setCpf(cpf);
-        client.setAddress(address);
-        client.setPhone(phone);
-        client.setEmail(email);
-        client.setUserId(userId);
-
-
-        ClientDao clientDao = new ClientDao();
-        clientDao.createClient(client);
-
-        //redirecionamento
-        resp.sendRedirect("/");
     }
 }

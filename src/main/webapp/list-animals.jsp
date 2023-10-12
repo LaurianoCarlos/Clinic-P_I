@@ -10,10 +10,8 @@
 <div>
     <h1>Animais do Cliente</h1>
     <h2>Cliente: ${nameClient}</h2>
-    <form action="form-animal.html" method="post">
-        <input type="hidden" name="idClient" value="${idClient}">
-        <input type="submit" value="Cadastrar Animal">
-    </form>
+    <h2>id: ${clientId}</h2>
+    <a href="form-animal.jsp?clientId=${clientId}">Cadastrar Animal</a>
     <table border="1">
         <tr>
             <th>Nome</th>
@@ -27,7 +25,7 @@
                 <td>${animal.specie}</td>
                 <td>${animal.size}</td>
                 <td>
-                    <form action="delete-animal.html" method="post">
+                    <form action="/delete-animal" method="post">
                         <input type="hidden" name="idAnimal" value="${animal.id}">
                         <input type="submit" value="Excluir">
                     </form>
