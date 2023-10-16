@@ -5,11 +5,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Clientes</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+<link rel="stylesheet" href="/resources/css/index.css">
 </head>
 <body>
-<div>
-    <h1>Clientes</h1>
-    <table border="1">
+<div class="container">
+    <h1 class="my-4">Clientes</h1>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
         <tr>
             <th>Id</th>
             <th>Nome</th>
@@ -18,8 +23,12 @@
             <th>Endereço</th>
             <th>Telefone</th>
             <th>ID do Usuário</th>
-            <th>Ação</th>
+            <th>Listar Animais</th>
+            <th>Atualizar Dados</th>
+            <th>Apagar</th>
         </tr>
+        </thead>
+        <tbody>
         <c:forEach var="client" items="${clients}">
             <tr>
                 <td>${client.id}</td>
@@ -29,11 +38,13 @@
                 <td>${client.address}</td>
                 <td>${client.phone}</td>
                 <td>${client.userId}</td>
-                <td>
-                    <form action="/list-animals" method="GET">
+                <td class="d-flex">
+                    <form action="/list-animals" method="GET" class="d-flex">
                         <input type="hidden" name="clientId" value="${client.id}">
                         <input type="hidden" name="nameClient" value="${client.name}">
-                        <input type="submit" value="Animais">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fas fa-paw align-middle"></i> Animais
+                        </button>
                     </form>
                 </td>
                 <td>
@@ -44,18 +55,23 @@
                         <input type="hidden" name="cpf" value="${client.cpf}">
                         <input type="hidden" name="address" value="${client.address}">
                         <input type="hidden" name="phone" value="${client.phone}">
-                        <input type="submit" value="Atualizar">
+                        <button type="submit" class=" btn btn-warning btn-sm">
+                            <i class="far fa-edit"></i> Atualizar
+                        </button>
                     </form>
                 </td>
                 <td>
                     <form action="/delete-client" method="POST">
                         <input type="hidden" name="clientId" value="${client.id}">
                         <input type="hidden" name="userId" value="${client.userId}">
-                        <input type="submit" value="Apagar">
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="far fa-trash-alt"></i> Apagar
+                        </button>
                     </form>
                 </td>
             </tr>
         </c:forEach>
+        </tbody>
     </table>
 </div>
 </body>
