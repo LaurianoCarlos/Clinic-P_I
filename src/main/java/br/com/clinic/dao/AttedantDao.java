@@ -2,7 +2,6 @@ package br.com.clinic.dao;
 
 import br.com.clinic.model.Attendant;
 import br.com.clinic.model.Veterinarian;
-import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,9 +11,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
- public class AttendantDao{
+public class AttendantDao {
 
-    public boolean createAttendant(@NotNull Attendant attendant){
+    public boolean createAttendant(Attendant attendant){
 
         String sql = "INSERT INTO ATTENDANT (NAME,CPF,EMAIL,ADDRESS,PHONE,USER_ID) VALUES (?,?,?,?,?,?)";
 

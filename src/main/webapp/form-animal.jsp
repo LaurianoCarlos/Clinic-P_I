@@ -12,7 +12,7 @@
 <div class="container">
     <div class="row justify-content-center mt-5">
         <div class="col-md-6">
-            <h2 class="mb-4">Cadastrar de Animal</h2>
+            <h2 class="mb-4">Cadastro de Animal</h2>
             <form action="/create-animal" method="post">
                 <input type="hidden" name="clientId" value="${param.clientId}">
 
