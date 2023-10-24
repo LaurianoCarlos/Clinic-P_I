@@ -3,7 +3,6 @@ package br.com.clinic.dao;
 import br.com.clinic.model.User;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -61,4 +60,43 @@ public class UserDao {
             System.out.println("ERROR WHEN TRYING TO DELETE!");
         }
     }
+
+    public User verifyCredentials(User user) {
+        String sql = "SELECT * FROM USERS WHERE EMAIL = ?";
+
+        try {
+            Connection connection = DatabaseDao.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, user.getEmail());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                String password = resultSet.getString("PASSWORD");
+                String userType = resultSet.getString("USER_TYPE");
+                String id = resultSet.getString("ID");
+
+                if (password.equals(user.getPassword())) {
+                    User authenticatedUser = new User(id,user.getEmail(),password,userType);
+                    System.out.println("id: " + id);
+                    System.out.println("usertype: " + userType);
+                    DatabaseDao.disconnect(connection);
+                    System.out.println("AUTHTENTICATED_USER CREATED LOGIN");
+                    return authenticatedUser;
+                } else {
+                    System.out.println("Senha incorreta");
+                }
+            } else {
+                System.out.println("Usuário não encontrado");
+            }
+
+            DatabaseDao.disconnect(connection);
+        } catch (Exception e) {
+            System.out.println("ERRO LOGIN: " + e.getMessage());
+        }
+
+        System.out.println("ERRO LOGIN NULL: ");
+        return null; // Retorna null apenas se a autenticação falhar
+    }
+
+
 }

@@ -133,4 +133,44 @@ public class VeterinarianDao {
             System.out.println(e.getMessage());
         }
     }
+    public Veterinarian getVeterinarianByUserID(String veterinarianuUserId){
+
+        String sql = "SELECT * FROM VETERINARIAN WHERE USER_ID = ?";
+
+        try {
+            Connection connection = DatabaseDao.getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, veterinarianuUserId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            Veterinarian veterinarian = null;
+
+            while (resultSet.next()) {
+                String id = resultSet.getString("ID");
+                String name = resultSet.getString("NAME");
+                String crmv = resultSet.getString("CRMV");
+                String cpf = resultSet.getString("CPF");
+                String address = resultSet.getString("ADDRESS");
+                String email = resultSet.getString("EMAIL");
+                String phone = resultSet.getString("PHONE");
+                String userId = resultSet.getString("USER_ID");
+
+                veterinarian = new Veterinarian(id, name, crmv, cpf, address, email, phone, userId);
+            }
+            DatabaseDao.disconnect(connection);
+            System.out.println("CREATE successfully");
+
+            return veterinarian;
+
+        }catch (SQLException e){
+
+            System.out.println("ERROR");
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+    }
 }

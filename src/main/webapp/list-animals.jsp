@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="pt-br">
@@ -22,7 +22,8 @@
             <th>Nome</th>
             <th>Espécie</th>
             <th>Tamanho</th>
-            <th>Ações</th>
+            <th>Apagar</th>
+            <th>Consulta</th>
         </tr>
         </thead>
         <tbody>
@@ -36,6 +37,12 @@
                         <input type="hidden" name="idAnimal"
                                value="${animal.id}">
                         <button type="submit" class="btn btn-danger">Excluir</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="form-consultation.jsp" method="post">
+                        <input type="hidden" name="idClient" value="${clientId}">
+                        <button type="submit" class="btn btn-primary">Marcar Consulta</button>
                     </form>
                 </td>
             </tr>

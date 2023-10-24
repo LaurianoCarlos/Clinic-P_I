@@ -2,6 +2,7 @@ package br.com.clinic.servlet;
 
 import br.com.clinic.dao.ClientDao;
 import br.com.clinic.dao.UserDao;
+import br.com.clinic.enums.UserType;
 import br.com.clinic.model.Client;
 import br.com.clinic.model.User;
 
@@ -31,7 +32,7 @@ public class CreateClientServlet extends HttpServlet {
         //data User
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        String userType = "client";
+        String userType = String.valueOf(UserType.CLIENT);
 
         User user = new User(email, password, userType);
 
