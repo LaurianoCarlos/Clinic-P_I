@@ -7,12 +7,17 @@
     <title>Lista de Clientes</title>
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="/webjars/bootstrap/5.3.1/dist/js/bootstrap.min.js"></script>
 </head>
 <link rel="stylesheet" href="/resources/css/index.css">
-</head>
 <body>
 <div class="container">
     <h1 class="my-4">Clientes</h1>
+    <div class="form-group">
+        <label for="searchCpf">Buscar por CPF:</label>
+        <input type="text" class="form-control" id="searchCpf" placeholder="Digite o CPF">
+        <button class="btn btn-primary mt-3 mb-3" id="searchButton">Buscar</button>
+    </div>
     <table class="table table-bordered">
         <thead class="thead-dark">
         <tr>
@@ -74,5 +79,7 @@
         </tbody>
     </table>
 </div>
+<script src="resources/js/seachCpf.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/5.3.1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

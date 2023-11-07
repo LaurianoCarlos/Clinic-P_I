@@ -17,6 +17,10 @@ import java.io.IOException;
 @WebServlet("/create-attendant")
 public class CreateAttendantServlet extends HttpServlet {
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("form-attendant.jsp").forward(req,resp);
+    }
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         //data update

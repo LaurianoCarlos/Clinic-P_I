@@ -1,47 +1,58 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PAINEL</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/resources/css/index.css">
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Logo</a>
+    <nav class="navbar bg-primary ">
+        <div class="container">
+            <p class="text-white">PAINEL ADMIN</p>
         </div>
     </nav>
 </header>
-<main class="row">
-    <p>Nome do Veterinário: <c:out value="${sessionScope.loggedUser.name}" /></p>
-    <div class="col-2 list-group bg-body-secondary vh-100">
-        <a href="/form-consultation.jsp" class="list-group-item list-group-item-action list-group-item-dark content-link">Marcar Consulta</a>
-        <a href="/list-clients" class="list-group-item list-group-item-action list-group-item-dark content-link">Clientes</a>
-        <hr>
-        <a href="/list-veterinarians" class="list-group-item list-group-item-action list-group-item-dark content-link">Listar Veteriarios</a>
+<main class="text-center">
+    <div class="text-center">
+        <img class="img-fluid"  width="150" height="150" src="resources/img/veterinaria-logo.png">
     </div>
-    <div class="col-10" id="content-area">
-
+    <p><c:out value="${sessionScope.veterinarian.name}"/></p>
+    <p>CRMV:<c:out value="${sessionScope.veterinarian.crmv}"/></p>
+    <div class="container-fluid w-100">
+        <div class="row justify-content-center">
+            <div class="btn-group col-8">
+                <a class="btn btn-secondary m-2" href="/list-consultation" role="button">Lista de Consultas</a>
+                <a class="btn btn-secondary m-2" href="/list-clients" role="button">Lista de Clientes</a>
+                <a class="btn btn-secondary m-2" href="/gerenate-queries" role="button">Gerar Atendimentos</a>
+                <a class="btn btn-secondary m-2" href="/create-client" role="button">Cadastrar Cliente</a>
+            </div>
+        </div>
+        <hr>
+        <div class="row justify-content-center">
+            <p>Funcionarios</p>
+            <div class="btn-group col-8">
+                <a class="btn btn-secondary m-2" href="/list-attendants" role="button">Listar Atendentes</a>
+                <a class="btn btn-secondary m-2" href="/list-attendants" role="button">Excluir Atendente</a>
+                <a class="btn btn-secondary m-2" href="/create-attendant" role="button">Cadastrar Atendente</a>
+            </div>
+        </div>
+        <hr>
+        <div class="row justify-content-center">
+            <p>Veterianrios</p>
+            <div class="btn-group col-8">
+                <a class="btn btn-secondary m-2" href="/list-veterinarians" role="button">Listar Veterinarios</a>
+                <a class="btn btn-secondary m-2" href="/list-veterinarians" role="button">Excluir Atendente</a>
+                <a class="btn btn-secondary m-2" href="/create-veterinarian" role="button">Cadastrar Atendente</a>
+            </div>
+        </div>
     </div>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<script>
-    const contentArea = document.getElementById('content-area');
-    const contentLinks = document.querySelectorAll('.content-link');
-
-    contentLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const href = link.getAttribute('href');
-            fetch(href)
-                .then(response => response.text())
-                .then(data => {
-                    contentArea.innerHTML = data;
-                });
-        });
-    });
-</script>
 </body>
 </html>

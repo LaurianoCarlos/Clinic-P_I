@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="pt-br">
@@ -33,16 +33,24 @@
                 <td>${animal.specie}</td>
                 <td>${animal.size}</td>
                 <td>
+                    <form action="/my-queries" method="POST">
+                        <input type="hidden" name="idAnimal"  value="${animal.id}">
+                        <button type="submit" class="btn btn-primary btn-sm"> consultas
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/list-query" method="get">
+                        <input type="hidden" name="idClient" value="${clientId}">
+                        <input type="hidden" name="idAnimal" value="${animal.id}">
+                        <button type="submit" class="btn btn-primary">Marcar Consulta</button>
+                    </form>
+                </td>
+                <td>
                     <form action="/delete-animal" method="post">
                         <input type="hidden" name="idAnimal"
                                value="${animal.id}">
                         <button type="submit" class="btn btn-danger">Excluir</button>
-                    </form>
-                </td>
-                <td>
-                    <form action="form-consultation.jsp" method="post">
-                        <input type="hidden" name="idClient" value="${clientId}">
-                        <button type="submit" class="btn btn-primary">Marcar Consulta</button>
                     </form>
                 </td>
             </tr>

@@ -13,7 +13,7 @@
 <div id="header-container"></div>
 
 <%
-    String clientId = request.getParameter("attendantId");
+    String attendantId = request.getParameter("attendantId");
     String name = request.getParameter("nameAttendant");
     String email = request.getParameter("email");
     String cpf = request.getParameter("cpfAttendant");
@@ -57,7 +57,7 @@
 </div>
 <% } %>
 
-<% if (clientId != null) { %>
+<% if (attendantId != null) { %>
 <div class="container mt-4 mb-4">
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8 col-sm-10">
