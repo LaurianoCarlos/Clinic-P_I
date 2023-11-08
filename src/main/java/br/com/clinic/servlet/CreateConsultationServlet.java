@@ -1,7 +1,10 @@
 package br.com.clinic.servlet;
 
 import br.com.clinic.dao.ConsultationDao;
+import br.com.clinic.dao.VeterinarianDao;
+import br.com.clinic.enums.StatusConsultation;
 import br.com.clinic.model.Consultation;
+import br.com.clinic.model.Veterinarian;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,46 +14,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @WebServlet("/create-consultation")
 public class CreateConsultationServlet extends HttpServlet {
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("form-consultation.jsp");
-    }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String idClient = req.getParameter("idClient");
         String idAnimal = req.getParameter("idAnimal");
-        String idVeterinarian = req.getParameter("idVeterinarian");
-        String dateForm = req.getParameter("dataHora") + ":00";
+        String idConsult = req.getParameter("idConsult");
 
-        System.out.println("DATA " + dateForm);
-        System.out.println("AM " + idAnimal);
-        System.out.println("CL " + idClient);
-        System.out.println("Vt " + idVeterinarian);
+        System.out.println("DADOS\n" +
+                "ID_Client: "+ idClient + " \n"+ "ID_Animal: " + idAnimal + "\n" + "\n" + "IdConult: " + idConsult );
 
+        new ConsultationDao().scheduleConsultation(idConsult,idAnimal,idClient);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-
-        Date date = null;
-
-        try {
-            date = sdf.parse(dateForm);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        if (date != null){
-            new ConsultationDao().createConsultation(new Consultation(date,idAnimal,idClient,idVeterinarian));
-            System.out.println("CREATE CONSULTATION");
-        } else {
-            System.out.println("FALED CREATE CONSULTATION");
-        }
-
+        resp.sendRedirect("/list-clients");
     }
 }

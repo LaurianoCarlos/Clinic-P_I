@@ -170,7 +170,6 @@ public class VeterinarianDao {
             System.out.println("ERROR");
             System.out.println(e.getMessage());
         }
-
         return null;
     }
 }
