@@ -12,16 +12,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/list-clients")
+@WebServlet({"/list-clients", "/admin/list-clients"})
 public class ListClientServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Client> clients = new ClientDao().findAllClients();
-        req.setAttribute("clients", clients);
 
-        System.out.println("Número de clientes encontrados: " + clients.size());
-        req.getRequestDispatcher("list-clients.jsp").forward(req, resp);
+
+        if (req.getSession().getAttribute("loggedUser") == null) {
+
+            resp.sendRedirect("login.jsp");
+
+        } else {
+            List<Client> clients = new ClientDao().findAllClients();
+            req.setAttribute("clients", clients);
+            System.out.println("Número de clientes encontrados: " + clients.size());
+            req.getRequestDispatcher("list-clients.jsp").forward(req, resp);
+        }
     }
 }
 

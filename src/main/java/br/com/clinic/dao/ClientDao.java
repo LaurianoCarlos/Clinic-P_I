@@ -1,6 +1,7 @@
 package br.com.clinic.dao;
 
 import br.com.clinic.model.Client;
+import br.com.clinic.model.Veterinarian;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -119,5 +120,43 @@ public class ClientDao {
             System.out.println("ERRO UPDATE CLIENT");
            System.out.println(e.getMessage());
         }
+    }
+    public Client getClientByUserID(String clientUserId){
+
+        String sql = "SELECT * FROM CLIENT WHERE USER_ID = ?";
+
+        try {
+            Connection connection = DatabaseDao.getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, clientUserId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            Client client = null;
+
+            while (resultSet.next()) {
+                String id = resultSet.getString("ID");
+                String name = resultSet.getString("NAME");
+                String email = resultSet.getString("EMAIL");
+                String cpf = resultSet.getString("CPF");
+                String address = resultSet.getString("ADDRESS");
+                String phone = resultSet.getString("PHONE");
+                int userId = resultSet.getInt("USER_ID");
+
+                client = new Client(id, name, email, cpf, address, phone, userId);
+            }
+            DatabaseDao.disconnect(connection);
+            System.out.println("CREATE successfully");
+
+            return client;
+
+        }catch (SQLException e){
+
+            System.out.println("ERROR");
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }

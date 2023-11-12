@@ -22,8 +22,9 @@
             <th>Nome</th>
             <th>Espécie</th>
             <th>Tamanho</th>
-            <th>Apagar</th>
-            <th>Consulta</th>
+            <th>Consultas</th>
+            <th>Marcar Consulta</th>
+            <th>Excluir</th>
         </tr>
         </thead>
         <tbody>
@@ -33,16 +34,24 @@
                 <td>${animal.specie}</td>
                 <td>${animal.size}</td>
                 <td>
-                    <form action="/my-queries" method="POST">
+                    <form action="/my-queries" method="post">
                         <input type="hidden" name="idAnimal"  value="${animal.id}">
-                        <button type="submit" class="btn btn-primary btn-sm"> consultas
+                        <button type="submit" class="btn btn-primary"> consultas
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/list-report" method="get">
+                        <input type="hidden" name="idAnimal"  value="${animal.id}">
+                        <input type="hidden" name="animalName"  value="${animal.name}">
+                        <button type="submit" class="btn btn-primary"> Laudos
                         </button>
                     </form>
                 </td>
                 <td>
                     <form action="/list-query" method="get">
-                        <input type="hidden" name="idClient" value="${clientId}">
                         <input type="hidden" name="idAnimal" value="${animal.id}">
+                        <input type="hidden" name="idClient" value="${clientId}">
                         <button type="submit" class="btn btn-primary">Marcar Consulta</button>
                     </form>
                 </td>

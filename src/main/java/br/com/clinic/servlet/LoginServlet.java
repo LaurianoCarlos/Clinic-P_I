@@ -1,8 +1,10 @@
 package br.com.clinic.servlet;
 
+import br.com.clinic.dao.ClientDao;
 import br.com.clinic.dao.UserDao;
 import br.com.clinic.dao.VeterinarianDao;
 import br.com.clinic.enums.UserType;
+import br.com.clinic.model.Client;
 import br.com.clinic.model.User;
 import br.com.clinic.model.Veterinarian;
 
@@ -40,7 +42,7 @@ public class LoginServlet extends HttpServlet {
                     veterinarianLogin(req, resp, isValidUser.getId());
                     break;
                 case CLIENT:
-                    resp.sendRedirect("/list-clients");
+                    clientLogin(req, resp, isValidUser.getId());
                     break;
                 case ATTENDANT:
                     resp.sendRedirect("/list-attendants");
@@ -60,7 +62,12 @@ public class LoginServlet extends HttpServlet {
         session.setAttribute("loggedUser", veterinarian);
         resp.sendRedirect("/administrator-panel");
     }
-
+    private void clientLogin(HttpServletRequest req, HttpServletResponse resp, String userId) throws ServletException, IOException {
+        Client client = new ClientDao().getClientByUserID(userId);
+        HttpSession session = req.getSession();
+        session.setAttribute("loggedUser", client);
+        resp.sendRedirect("/client-panel");
+    }
     private void invalidCredentials(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String erro = "Credenciais inválidas";
         req.getSession().setAttribute("erro", erro);

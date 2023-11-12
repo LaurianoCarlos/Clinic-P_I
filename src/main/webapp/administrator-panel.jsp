@@ -17,6 +17,11 @@
         <div class="container">
             <p class="text-white">PAINEL ADMIN</p>
         </div>
+        <div>
+            <c:if test="${sessionScope.loggedUser != null}">
+                <a href="/logout">Logout</a>
+            </c:if>
+        </div>
     </nav>
 </header>
 <main class="text-center">

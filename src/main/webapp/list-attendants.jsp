@@ -12,7 +12,7 @@
 <body>
 <div class="container">
     <h1 class="my-4">Atendentes</h1>
-    <span><a class="btn btn-primary" href="form-attendant.jsp">Cadastrar Atendentes</a></span>
+    <span><a class="btn btn-primary" href="/create-attendant">Cadastrar Atendentes</a></span>
     <table class="table table-bordered">
         <thead class="thead-dark">
         <tr>
@@ -38,7 +38,7 @@
                 <td>${attendant.phone}</td>
                 <td>${attendant.userId}</td>
                 <td>
-                    <form action="form-attendant.jsp" method="POST">
+                    <form action="/create-attendant" method="POST">
                         <input type="hidden" name="attendantId" value="${attendant.id}">
                         <input type="hidden" name="name" value="${attendant.name}">
                         <input type="hidden" name="email" value="${attendant.email}">

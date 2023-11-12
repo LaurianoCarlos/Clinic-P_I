@@ -95,7 +95,8 @@ public class ConsultationDao {
 
         } catch (Exception e) {
             System.out.println("ERROR WHEN GETTING CONSULTATIONS OF THE DAY: " + e.getMessage());
-            return null;
+            //RETURN AN EMPTY LIST
+            return Collections.emptyList();
         }
     }
     public boolean createConsultationsForMonth(int year, int month, String idVeterinarian) {
