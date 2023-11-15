@@ -25,7 +25,7 @@ public class CreateAttendantServlet extends HttpServlet {
 
         //data update
         String id = req.getParameter("attendantId");
-        System.out.println("Meu ID: " + id);
+        System.out.println("Meu IDATTENDANT: " + id);
 
         //data Veterinarian
         String name = req.getParameter("name");
@@ -58,12 +58,12 @@ public class CreateAttendantServlet extends HttpServlet {
                 new UserDao().deleteUserById(userIdConvert);
             }
 
-            resp.sendRedirect("/");
+            resp.sendRedirect("/list-attendants");
         } else {
 
             System.out.println("UPDATE ATTENDANT");
             new AttendantDao().updateAttedant(new Attendant(address, phone, id));
-            resp.sendRedirect("/");
+            resp.sendRedirect("/list-attendants");
 
         }
     }

@@ -67,29 +67,32 @@ public class AnimalDao {
             return Collections.emptyList();
         }
     }
-    public void deleteAnimalById(String animalId){
-
-        String sql = "DELETE ANIMAL WHERE ID = ?";
-
+    public void deleteAnimalById(String animalId) {
         try {
             Connection connection = DatabaseDao.getConnection();
 
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            String deleteReport = "DELETE FROM Report WHERE idConsultation IN (SELECT id FROM Consultation WHERE id_Animal = ?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(deleteReport)) {
+                preparedStatement.setString(1, animalId);
+                preparedStatement.execute();
+            }
 
-            preparedStatement.setString(1, animalId);
 
-            preparedStatement.execute();
+            String deleteAnimal = "DELETE FROM Animal WHERE id = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(deleteAnimal)) {
+                preparedStatement.setString(1, animalId);
+                preparedStatement.execute();
+            }
 
             DatabaseDao.disconnect(connection);
 
-            System.out.println("Deleted Animal successfully");
-
-        }catch (SQLException e){
-
+            System.out.println("Deleted successfully");
+        } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("ERROR WHEN TRYING TO DELETE!");
         }
     }
+
     public void deleteAnimalsByClientId(String clientId) {
         String sql = "DELETE FROM ANIMAL WHERE CLIENT_ID = ?";
 

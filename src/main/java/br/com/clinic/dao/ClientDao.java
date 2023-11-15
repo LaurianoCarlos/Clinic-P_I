@@ -77,29 +77,38 @@ public class ClientDao {
         }
 
     }
-    public void deleteClientById(String clientId){
-
-        String sql = "DELETE CLIENT WHERE ID = ?";
-
+    public void deleteClientById(String clientId) {
         try {
             Connection connection = DatabaseDao.getConnection();
 
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, clientId);
+            String deleteReportAndConsultation = "DELETE FROM Report WHERE idConsultation IN (SELECT id FROM Consultation WHERE id_Client = ?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(deleteReportAndConsultation)) {
+                preparedStatement.setString(1, clientId);
+                preparedStatement.execute();
+            }
 
-            preparedStatement.execute();
+            String deleteConsultation = "DELETE FROM Consultation WHERE id_Client = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(deleteConsultation)) {
+                preparedStatement.setString(1, clientId);
+                preparedStatement.execute();
+            }
+
+            String deleteAnimal = "DELETE FROM Animal WHERE CLIENT_ID = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(deleteAnimal)) {
+                preparedStatement.setString(1, clientId);
+                preparedStatement.execute();
+            }
 
             DatabaseDao.disconnect(connection);
 
             System.out.println("Deleted successfully");
+        } catch (Exception e) {
 
-        }catch (SQLException e){
-
-            e.printStackTrace();
-            System.out.println("ERROR WHEN TRYING TO DELETE!");
+            System.out.println("ERROR WHEN TRYING TO DELETE!" + e.getMessage());
         }
     }
+
     public void updateClient(Client client){
         String sql = " UPDATE CLIENT SET ADDRESS = ?, PHONE = ? WHERE ID = ?";
 

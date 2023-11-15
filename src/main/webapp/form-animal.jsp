@@ -15,10 +15,18 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-6">
                 <h2 class="mb-4">Cadastro de Animal</h2>
-                <div class="container text-center mt-4">
-                    <a href="/administrator-panel" class="btn btn-secondary">Voltar</a>
-                    <a href="/administrator-panel" class="btn btn-secondary">Voltar ao Painel</a>
-                </div>
+                <c:if test="${not empty admin}">
+                    <div class="container text-center mt-4 mb-3">
+                        <button class="btn btn-secondary" onclick="goBack()">Voltar</button>
+                        <a href="/administrator-panel" class="btn btn-secondary">Voltar ao Painel</a>
+                    </div>
+                </c:if>
+                <c:if test="${empty admin}">
+                    <div class="container text-center mt-4 mb-3">
+                        <button class="btn btn-secondary" onclick="goBack()">Voltar</button>
+                        <a href="/client-panel" class="btn btn-secondary">Voltar ao Painel</a>
+                    </div>
+                </c:if>
                 <form action="/create-animal" method="post">
                     <input type="hidden" name="clientId" value="${param.clientId}">
 

@@ -10,28 +10,35 @@
     <link rel="stylesheet" href="/resources/css/index.css">
 </head>
 <body>
+<%
+    String idAnimal = request.getParameter("idAnimal");
+    String clientId = "";
+
+    //tratamento de erro
+    //Verifica se o usuario na sessão é do tipo Client
+    Object userObj = session.getAttribute("loggedUser");
+
+    if (userObj != null && userObj instanceof Client) {
+        Client client = (Client) userObj;
+        clientId = client.getId();
+    }
+%>
 <div id="header-container"></div>
     <main>
     <div class="container mt-4">
         <h1 class="fs-2">Lista de Consultas</h1>
-        <div class="container text-center mt-4 mb-3">
-            <a href="/administrator-panel" class="btn btn-secondary">Voltar</a>
-            <a href="/administrator-panel" class="btn btn-secondary">Voltar ao Painel</a>
-        </div>
-        <%
-            String idAnimal = request.getParameter("idAnimal");
-            String clientId = "";
-
-            //tratamento de erro
-            //Verifica se o usuario na sessão é do tipo Client
-            Object userObj = session.getAttribute("loggedUser");
-
-            if (userObj != null && userObj instanceof Client) {
-                Client client = (Client) userObj;
-                clientId = client.getId();
-            }
-        %>
-
+        <c:if test="${not empty admin}">
+            <div class="container text-center mt-4 mb-3">
+                <button class="btn btn-secondary" onclick="goBack()">Voltar</button>
+                <a href="/administrator-panel" class="btn btn-secondary">Voltar ao Painel</a>
+            </div>
+        </c:if>
+        <c:if test="${empty admin}">
+            <div class="container text-center mt-4 mb-3">
+                <button class="btn btn-secondary" onclick="goBack()">Voltar</button>
+                <a href="/client-panel" class="btn btn-secondary">Voltar ao Painel</a>
+            </div>
+        </c:if>
 
         <table class="table table-bordered">
             <thead class="thead-dark">
@@ -90,6 +97,11 @@
     </div>
 </main>
 <div id="footer-container"></div>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 <script src="resources/js/admin/loadAdmin.js"></script>
 <script type="text/javascript" src="/webjars/bootstrap/5.3.1/dist/js/bootstrap.min.js"></script>
 </body>

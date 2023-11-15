@@ -53,7 +53,7 @@ public class CreateClientServlet extends HttpServlet {
             Client client = new Client(name, email, cpf, address, phone, userId);
 
             new ClientDao().createClient(client);
-            resp.sendRedirect("/");
+            resp.sendRedirect("/form-client.jsp");
 
         } else {
 

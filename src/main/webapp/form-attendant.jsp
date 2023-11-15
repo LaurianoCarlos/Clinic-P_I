@@ -14,9 +14,9 @@
 
 <%
     String attendantId = request.getParameter("attendantId");
-    String name = request.getParameter("nameAttendant");
+    String name = request.getParameter("name");
     String email = request.getParameter("email");
-    String cpf = request.getParameter("cpfAttendant");
+    String cpf = request.getParameter("cpf");
     String address = request.getParameter("address");
     String phone = request.getParameter("phone");
 %>
@@ -25,7 +25,10 @@
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8 col-sm-10">
             <h1 class="text-center mb-4 fs-1">Atendente Cadastro</h1>
-            <form action="/create-client" method="POST">
+            <div class="container text-center mt-4">
+                <a href="/administrator-panel" class="btn btn-secondary">Voltar ao Painel</a>
+            </div>
+            <form action="/create-attendant" method="POST">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nome:</label>
                     <input type="text" class="form-control" id="name" name="name" required>

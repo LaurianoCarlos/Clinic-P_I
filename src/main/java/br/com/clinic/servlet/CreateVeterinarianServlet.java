@@ -63,12 +63,12 @@ public class CreateVeterinarianServlet extends HttpServlet {
                 new UserDao().deleteUserById(userIdConvert);
             }
 
-            resp.sendRedirect("/");
+            resp.sendRedirect("/list-veterinarians");
         } else {
 
             System.out.println("UPDATE VETERINARIAN LORO");
             new VeterinarianDao().updateVeterinarian(new Veterinarian(address,phone,id));
-            resp.sendRedirect("/");
+            resp.sendRedirect("/list-veterinarians");
         }
     }
 }
