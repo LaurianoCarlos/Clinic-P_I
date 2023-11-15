@@ -22,14 +22,15 @@ public class CreateReportServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String idAnimal = req.getParameter("idAnimal");
-        String consultaId = req.getParameter("consultaId");
+        String consultaId = req.getParameter("idConsultation");
         String diagnostico = req.getParameter("diagnostico");
 
+        System.out.println("idAnimal: " + idAnimal + "\n" +
+                "IdConsultation: " + consultaId + "\n" +
+                "Diagnostico: "+ diagnostico);
         new ReportDao().createReport(new Report(diagnostico,consultaId,idAnimal));
 
         resp.sendRedirect("/create-report");
-
-
 
     }
 }

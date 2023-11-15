@@ -16,10 +16,11 @@ public class DeleteAnimalServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String idAnimal = req.getParameter("idAnimal");
+        String idClient = req.getParameter("idClient");
         System.out.println("IdAnimal: " + idAnimal);
 
         new AnimalDao().deleteAnimalById(idAnimal);
 
-        resp.sendRedirect("list-clients.jsp");
+        resp.sendRedirect("/list-animals?clientId=" + idClient);
     }
 }

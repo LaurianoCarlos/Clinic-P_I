@@ -26,7 +26,7 @@ public class CreateClientServlet extends HttpServlet {
 
         String id = req.getParameter("clientId");
 
-        System.out.println("Id: " + id);
+        System.out.println("Idd: " + id);
 
         String name = req.getParameter("name");
         String cpf = req.getParameter("cpf");
@@ -59,7 +59,7 @@ public class CreateClientServlet extends HttpServlet {
 
             Client client = new Client(address,phone,id);
             new ClientDao().updateClient(client);
-            resp.sendRedirect("/");
+            resp.sendRedirect("/client-panel");
         }
     }
 }

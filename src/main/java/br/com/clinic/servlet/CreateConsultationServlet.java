@@ -31,6 +31,6 @@ public class CreateConsultationServlet extends HttpServlet {
 
         new ConsultationDao().scheduleConsultation(idConsult,idAnimal,idClient);
 
-        resp.sendRedirect("/list-clients");
+        resp.sendRedirect("/list-animals?clientId=" + idClient);
     }
 }
