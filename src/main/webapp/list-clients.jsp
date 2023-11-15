@@ -11,8 +11,12 @@
 </head>
 <link rel="stylesheet" href="/resources/css/index.css">
 <body>
-<div class="container">
-    <h1 class="my-4">Clientes</h1>
+<div id="header-container"></div>
+<div class="container h-100">
+    <h1 class="my-4 text-center">Clientes</h1>
+    <div class="container text-center mt-4">
+        <a href="/administrator-panel" class="btn btn-secondary">Voltar ao Painel</a>
+    </div>
     <div class="form-group">
         <label for="searchCpf">Buscar por CPF:</label>
         <input type="text" class="form-control" id="searchCpf" placeholder="Digite o CPF">
@@ -21,13 +25,11 @@
     <table class="table table-bordered">
         <thead class="thead-dark">
         <tr>
-            <th>Id</th>
             <th>Nome</th>
             <th>Email</th>
             <th>CPF</th>
             <th>Endereço</th>
             <th>Telefone</th>
-            <th>ID do Usuário</th>
             <th>Listar Animais</th>
             <th>Atualizar Dados</th>
             <th>Apagar</th>
@@ -36,13 +38,11 @@
         <tbody>
         <c:forEach var="client" items="${clients}">
             <tr>
-                <td>${client.id}</td>
                 <td>${client.name}</td>
                 <td>${client.email}</td>
                 <td>${client.cpf}</td>
                 <td>${client.address}</td>
                 <td>${client.phone}</td>
-                <td>${client.userId}</td>
                 <td class="d-flex">
                     <form action="/list-animals" method="GET" class="d-flex">
                         <input type="hidden" name="clientId" value="${client.id}">
@@ -79,7 +79,9 @@
         </tbody>
     </table>
 </div>
+<div id="footer-container"></div>
 <script src="resources/js/seachCpf.js"></script>
+<script src="resources/js/admin/loadAdmin.js"></script>
 <script type="text/javascript" src="/webjars/bootstrap/5.3.1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

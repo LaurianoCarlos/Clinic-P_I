@@ -9,9 +9,13 @@
     <link rel="stylesheet" href="/resources/css/index.css">
 </head>
 <body>
+<div id="header-container"></div>
 <div class="container mt-4">
-    <h1>Verificar Consultas</h1>
-    <h2 class="my-4">Selecione uma data</h2>
+    <h1 class="fs-1">Verificar Consultas</h1>
+    <div class="container text-center mt-4">
+        <a href="/administrator-panel" class="btn btn-secondary">Voltar ao Painel</a>
+    </div>
+    <h2 class="fs-4">Selecione uma data</h2>
     <form action="/list-consultation" method="POST">
         <div class="form-group">
             <label for="date">Data da Consulta:</label>
@@ -49,5 +53,8 @@
         </tbody>
     </table>
 </div>
+<div id="footer-container"></div>
+<script src="resources/js/admin/loadAdmin.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/5.3.1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

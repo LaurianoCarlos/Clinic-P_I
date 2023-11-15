@@ -10,27 +10,34 @@
     <link rel="stylesheet" href="/resources/css/index.css">
 </head>
 <body>
-
-<div class="container">
-    <h2>Formulário de Diagnóstico</h2>
-    <%
-        String idAnimal = request.getParameter("idAnimal");
-        String consultaId = request.getParameter("consultaId");
-    %>
-
-    <form action="/create-report" method="post">
-        <div class="mb-3">
-            <label class="form-label">Diagnóstico:</label>
-            <textarea class="form-control"  name="diagnostico" rows="4" required></textarea>
+<div id="header-container"></div>
+<main>
+    <div class="container mt-3 mb-3">
+        <h2 class="fs-2">Formulário de Diagnóstico</h2>
+        <div class="container text-center mt-4">
+            <a href="/administrator-panel" class="btn btn-secondary">Voltar</a>
+            <a href="/administrator-panel" class="btn btn-secondary">Voltar ao Painel</a>
         </div>
+        <%
+            String idAnimal = request.getParameter("idAnimal");
+            String idConsultation = request.getParameter("idConsultation");
+        %>
 
-        <input type="hidden" name="idAnimal" value="<%= idAnimal %>">
-        <input type="hidden" name="consultaId" value="<%= consultaId %>">
+        <form action="/create-report" method="post">
+            <div class="mb-3">
+                <label class="form-label">Diagnóstico:</label>
+                <textarea class="form-control"  name="diagnostico" rows="4" required></textarea>
+            </div>
 
-        <button type="submit" class="btn btn-primary">Adicionar Diagnóstico</button>
-    </form>
-</div>
+            <input type="hidden" name="idAnimal" value="<%= idAnimal %>">
+            <input type="hidden" name="idConsultation" value="<%= idConsultation %>">
 
-<script src="/webjars/bootstrap/5.3.1/dist/js/bootstrap.min.js"></script>
+            <button type="submit" class="btn btn-primary">Adicionar Diagnóstico</button>
+        </form>
+    </div>
+</main>
+<div id="footer-container"></div>
+<script src="resources/js/admin/loadAdmin.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/5.3.1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

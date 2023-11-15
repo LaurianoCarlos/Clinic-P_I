@@ -24,7 +24,7 @@
 <div class="container mt-4 mb-4">
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8 col-sm-10">
-            <h1 class="text-center mb-4">Formulário de Cadastro</h1>
+            <h1 class="text-center mb-4 fs-1">Atendente Cadastro</h1>
             <form action="/create-client" method="POST">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nome:</label>
@@ -91,7 +91,7 @@
 </div>
 <% } %>
 <div id="footer-container"></div>
-<script src="resources/js/loadIndex.js"></script>
+<script src="resources/js/admin/loadAdmin.js"></script>
 <script src="/webjars/bootstrap/5.3.1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

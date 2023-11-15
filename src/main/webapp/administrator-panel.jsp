@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -12,18 +12,7 @@
     <link rel="stylesheet" href="/resources/css/index.css">
 </head>
 <body>
-<header>
-    <nav class="navbar bg-primary ">
-        <div class="container">
-            <p class="text-white">PAINEL ADMIN</p>
-        </div>
-        <div>
-            <c:if test="${sessionScope.loggedUser != null}">
-                <a href="/logout">Logout</a>
-            </c:if>
-        </div>
-    </nav>
-</header>
+<div id="header-container"></div>
 <main class="text-center">
     <div class="text-center">
         <img class="img-fluid"  width="150" height="150" src="resources/img/veterinaria-logo.png">
@@ -49,15 +38,17 @@
             </div>
         </div>
         <hr>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mb-3">
             <p>Veterianrios</p>
             <div class="btn-group col-8">
                 <a class="btn btn-secondary m-2" href="/list-veterinarians" role="button">Listar Veterinarios</a>
-                <a class="btn btn-secondary m-2" href="/list-veterinarians" role="button">Excluir Atendente</a>
-                <a class="btn btn-secondary m-2" href="/create-veterinarian" role="button">Cadastrar Atendente</a>
+                <a class="btn btn-secondary m-2" href="/list-veterinarians" role="button">Excluir Veterinario</a>
+                <a class="btn btn-secondary m-2" href="/create-veterinarian" role="button">Cadastrar Veterinarios</a>
             </div>
         </div>
     </div>
 </main>
+<div id="footer-container"></div>
+<script src="resources/js/admin/loadAdmin.js"></script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+<%@ page import="br.com.clinic.model.Client" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="pt-br">
@@ -9,33 +10,87 @@
     <link rel="stylesheet" href="/resources/css/index.css">
 </head>
 <body>
-<div class="container mt-4">
-    <h1>Lista de Consultas</h1>
-<%
-    String idAnimal = request.getParameter("idAnimal");
-%>
-    <table class="table table-bordered">
-        <thead class="thead-dark">
-        <tr>
-            <th>ID</th>
-            <th>Data</th>
-            <th>Atribuir Diagnóstico</th>
-        </tr>
-        </thead>
-        <c:forEach items="${consultations}" var="consulta">
-            <tr>
-                <td>${consulta.id}</td>
-                <td>${consulta.date}</td>
-                <td>
-                    <form action="/create-report" method="get">
-                        <input type="hidden" name="consultaId" value="${consulta.id}">
-                        <input type="hidden" name="idAnimal" value="<%= idAnimal%>">
-                        <button type="submit" class="btn btn-primary">Atribuir Diagnóstico</button>
-                    </form>
-                </td>
-            </tr>
-        </c:forEach>
-    </table>
-</div>
+<div id="header-container"></div>
+    <main>
+    <div class="container mt-4">
+        <h1 class="fs-2">Lista de Consultas</h1>
+        <div class="container text-center mt-4 mb-3">
+            <a href="/administrator-panel" class="btn btn-secondary">Voltar</a>
+            <a href="/administrator-panel" class="btn btn-secondary">Voltar ao Painel</a>
+        </div>
+        <%
+            String idAnimal = request.getParameter("idAnimal");
+            String clientId = "";
+
+            //tratamento de erro
+            //Verifica se o usuario na sessão é do tipo Client
+            Object userObj = session.getAttribute("loggedUser");
+
+            if (userObj != null && userObj instanceof Client) {
+                Client client = (Client) userObj;
+                clientId = client.getId();
+            }
+        %>
+
+
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Data</th>
+                    <c:if test="${not empty admin}">
+                        <th>Atribuir Diagnóstico</th>
+                    </c:if>
+                    <th>Desmarcar Consulta</th>
+                </tr>
+
+            </thead>
+            <c:forEach items="${consultations}" var="consulta">
+                <tr>
+                    <td>${consulta.date}</td>
+                    <c:if test="${not empty admin}">
+                        <td>
+                            <form action="/create-report" method="get">
+                                <input type="hidden" name="idConsultation" value="${consulta.id}">
+                                <input type="hidden" name="idAnimal" value="<%= idAnimal%>">
+                                <button type="submit" class="btn btn-primary">Atribuir Diagnóstico ${consulta.id}</button>
+                            </form>
+                        </td>
+                    </c:if>
+                    <td>
+                        <div>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Desmarcar Consulta
+                            </button>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Desmarcar Consulta</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Tem certeza de deseja desmarcar a consulta?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <form action="/delete-consultation" method="post">
+                                                <input type="hidden" name="idConsultation" value="${consulta.id}">
+                                                <input type="hidden" name="idAnimal" value="<%= idAnimal%>">
+                                                <button type="submit" class="btn btn-primary">Desmarcar Consulta</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                           </div>
+                        </div>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+</main>
+<div id="footer-container"></div>
+<script src="resources/js/admin/loadAdmin.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/5.3.1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

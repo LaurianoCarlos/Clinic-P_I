@@ -1,0 +1,12 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary p-2">
+        <div class="container">
+            <span class="navbar-brand">PAINEL ADMIN</span>
+        </div>
+        <div class="navbar navbar-expand-lg navbar-dark bg-primary p-2">
+            <c:if test="${sessionScope.loggedUser != null}">
+                <a href="/logout" class="btn btn-danger">Sair</a>
+            </c:if>
+        </div>
+    </nav>
+</header>

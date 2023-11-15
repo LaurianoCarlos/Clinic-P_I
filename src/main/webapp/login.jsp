@@ -27,6 +27,9 @@
                         <div class="alert alert-danger" role="alert">
                             <p><%= erro %></p>
                         </div>
+                        <% session.removeAttribute("erro"); %>
+                        <% } %>
+
                         <form action="/login" method="post">
                             <div class="form-group">
                                 <label>Email:</label>

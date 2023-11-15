@@ -10,42 +10,51 @@
     <link rel="stylesheet" href="/resources/css/index.css">
 </head>
 <body>
+<div id="header-container"></div>
+<main>
+    <div class="container mt-4">
+        <h2 class="fs-1">Detalhes da Consulta</h2>
+        <div class="container text-center mt-4">
+            <a href="/administrator-panel" class="btn btn-secondary">Voltar</a>
+            <a href="/administrator-panel" class="btn btn-secondary">Voltar ao Painel</a>
+        </div>
+        <% String animalName = request.getParameter("animalName");%>
+        <c:choose>
+            <c:when test="${not empty reports}">
 
-<div class="container mt-4">
-    <h2>Detalhes da Consulta</h2>
-    <% String animalName = request.getParameter("animalName");%>
-    <c:choose>
-        <c:when test="${not empty reports}">
-
-            <p>Animal: <%= animalName%> </p>
-            <table class="table table-bordered">
-                <thead class="thead-dark">
-                <tr>
-                    <th>Data da Consulta</th>
-                    <th>Nome do Veterinário</th>
-                    <th>Diagnóstico</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="report" items="${reports}">
-
+                <p>Animal: <%= animalName%> </p>
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
                     <tr>
-                        <td>
-                            <!--usado para formatar a data-->
-                            <fmt:formatDate value="${report.dateConsultation}" pattern="dd/MM/yyyy HH:mm:ss" />
-                        </td>
-                        <td>${report.veterinarianName}</td>
-                        <td>${report.diagnosis}</td>
+                        <th>Data da Consulta</th>
+                        <th>Atendido Por</th>
+                        <th>Diagnóstico</th>
                     </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </c:when>
-        <c:otherwise>
-            <p>Nenhum relatório disponível.</p>
-        </c:otherwise>
-    </c:choose>
+                    </thead>
+                    <tbody>
+                    <c:forEach var="report" items="${reports}">
 
-</div>
+                        <tr>
+                            <td>
+                                <!--usado para formatar a data-->
+                                <fmt:formatDate value="${report.dateConsultation}" pattern="dd/MM/yyyy HH:mm:ss" />
+                            </td>
+                            <td>${report.veterinarianName}</td>
+                            <td>${report.diagnosis}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </c:when>
+            <c:otherwise>
+                <p>Nenhum relatório disponível.</p>
+            </c:otherwise>
+        </c:choose>
+
+    </div>
+</main>
+<div id="footer-container"></div>
+<script src="resources/js/admin/loadAdmin.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/5.3.1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
