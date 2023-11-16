@@ -15,10 +15,18 @@
     <div class="container fs-5">
         <h1 class="my-4 fs-2">Animais</h1>
         <h2 class="fs-2">Cliente: ${nameClient}</h2>
-        <div class="container text-center mt-4">
-            <a href="/administrator-panel" class="btn btn-secondary">Voltar</a>
-            <a href="/administrator-panel" class="btn btn-secondary">Voltar ao Painel</a>
-        </div>
+        <c:if test="${not empty admin}">
+            <div class="container text-center mt-4 mb-3">
+                <button class="btn btn-secondary" onclick="goBack()">Voltar</button>
+                <a href="/administrator-panel" class="btn btn-secondary">Voltar ao Painel</a>
+            </div>
+        </c:if>
+        <c:if test="${empty admin}">
+            <div class="container text-center mt-4 mb-3">
+                <button class="btn btn-secondary" onclick="goBack()">Voltar</button>
+                <a href="/client-panel" class="btn btn-secondary">Voltar ao Painel</a>
+            </div>
+        </c:if>
         <a class="btn btn-primary my-3"
            href="form-animal.jsp?clientId=${clientId}">Cadastrar Animal</a>
         <%
@@ -80,6 +88,11 @@
 </main>
 
 <div id="footer-container"></div>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 <script src="resources/js/admin/loadAdmin.js"></script>
 <script type="text/javascript" src="/webjars/bootstrap/5.3.1/dist/js/bootstrap.min.js"></script>
 </body>

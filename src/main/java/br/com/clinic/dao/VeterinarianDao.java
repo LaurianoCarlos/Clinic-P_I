@@ -87,29 +87,43 @@ public class VeterinarianDao {
         }
 
     }
-    public void deleteVeterinarianById(String veterinarianId){
-
-        String sql = "DELETE VETERINARIAN WHERE ID = ?";
-
+    public void deleteVeterinarianById(String veterinarianId) {
         try {
             Connection connection = DatabaseDao.getConnection();
 
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            String deleteReport = "DELETE FROM Report WHERE idConsultation IN (SELECT id FROM Consultation WHERE id_Veterinarian = ?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(deleteReport)) {
+                preparedStatement.setString(1, veterinarianId);
+                preparedStatement.execute();
+            }
 
-            preparedStatement.setString(1, veterinarianId);
+            String deleteConsultation = "DELETE FROM Consultation WHERE id_Veterinarian = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(deleteConsultation)) {
+                preparedStatement.setString(1, veterinarianId);
+                preparedStatement.execute();
+            }
 
-            preparedStatement.execute();
+            String deleteVeterinarian = "DELETE FROM Veterinarian WHERE id = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(deleteVeterinarian)) {
+                preparedStatement.setString(1, veterinarianId);
+                preparedStatement.execute();
+            }
+            
+            String deleteUsers = "DELETE FROM Users WHERE id = (SELECT user_Id FROM Veterinarian WHERE id = ?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(deleteUsers)) {
+                preparedStatement.setString(1, veterinarianId);
+                preparedStatement.execute();
+            }
 
             DatabaseDao.disconnect(connection);
 
             System.out.println("Deleted successfully");
-
-        }catch (SQLException e){
-
+        } catch (SQLException e) {
+            e.printStackTrace();
             System.out.println("ERROR WHEN TRYING TO DELETE!");
-            System.out.println(e.getMessage());
         }
     }
+
     public void updateVeterinarian(Veterinarian veterinarian){
         String sql = " UPDATE VETERINARIAN SET ADDRESS = ?, PHONE = ? WHERE ID = ?";
 

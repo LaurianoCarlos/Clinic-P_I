@@ -14,10 +14,18 @@
 <main>
     <div class="container mt-4">
         <h2 class="fs-1">Detalhes da Consulta</h2>
-        <div class="container text-center mt-4">
-            <a href="/administrator-panel" class="btn btn-secondary">Voltar</a>
-            <a href="/administrator-panel" class="btn btn-secondary">Voltar ao Painel</a>
-        </div>
+        <c:if test="${not empty admin}">
+            <div class="container text-center mt-4 mb-3">
+                <button class="btn btn-secondary" onclick="goBack()">Voltar</button>
+                <a href="/administrator-panel" class="btn btn-secondary">Voltar ao Painel</a>
+            </div>
+        </c:if>
+        <c:if test="${empty admin}">
+            <div class="container text-center mt-4 mb-3">
+                <button class="btn btn-secondary" onclick="goBack()">Voltar</button>
+                <a href="/client-panel" class="btn btn-secondary">Voltar ao Painel</a>
+            </div>
+        </c:if>
         <% String animalName = request.getParameter("animalName");%>
         <c:choose>
             <c:when test="${not empty reports}">
@@ -53,6 +61,11 @@
 
     </div>
 </main>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 <div id="footer-container"></div>
 <script src="resources/js/admin/loadAdmin.js"></script>
 <script type="text/javascript" src="/webjars/bootstrap/5.3.1/dist/js/bootstrap.min.js"></script>

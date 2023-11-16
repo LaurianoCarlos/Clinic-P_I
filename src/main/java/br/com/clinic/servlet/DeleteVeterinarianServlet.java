@@ -26,6 +26,6 @@ public class DeleteVeterinarianServlet extends HttpServlet {
         new VeterinarianDao().deleteVeterinarianById(id);
         new UserDao().deleteUserById(userId);
 
-        resp.sendRedirect("list-veterinarians.jsp");
+        resp.sendRedirect("/list-veterinarians");
     }
 }

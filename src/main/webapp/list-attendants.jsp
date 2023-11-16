@@ -39,7 +39,7 @@
                     <td>${attendant.address}</td>
                     <td>${attendant.phone}</td>
                     <td>
-                        <form action="/create-attendant" method="POST">
+                        <form action="/create-attendant" method="GET">
                             <input type="hidden" name="attendantId" value="${attendant.id}">
                             <input type="hidden" name="name" value="${attendant.name}">
                             <input type="hidden" name="email" value="${attendant.email}">
