@@ -27,6 +27,6 @@ public class DeleteClientServlet extends HttpServlet {
       new ClientDao().deleteClientById(clientId);
       new UserDao().deleteUserById(userId);
 
-      resp.sendRedirect("list-clients.jsp");
+      resp.sendRedirect("/list-clients");
     }
 }

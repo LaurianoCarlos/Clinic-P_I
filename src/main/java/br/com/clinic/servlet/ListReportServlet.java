@@ -19,13 +19,21 @@ public class ListReportServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String animalId = req.getParameter("idAnimal");
 
-        List<Report> reports = new ReportDao().getReportsById(animalId);
-        req.setAttribute("reports", reports);
 
-        System.out.println("Número de reports encontrados: " + reports.size());
-        req.getRequestDispatcher("list-report.jsp").forward(req, resp);
+        if (req.getSession().getAttribute("loggedUser") == null) {
+
+            resp.sendRedirect("login.jsp");
+
+        } else {
+
+            String animalId = req.getParameter("idAnimal");
+
+            List<Report> reports = new ReportDao().getReportsById(animalId);
+            req.setAttribute("reports", reports);
+
+            System.out.println("Número de reports encontrados: " + reports.size());
+            req.getRequestDispatcher("list-report.jsp").forward(req, resp);
+        }
     }
 }
-

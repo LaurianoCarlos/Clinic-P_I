@@ -11,6 +11,15 @@ import java.io.IOException;
 public class ClientPanelServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/client-panel.jsp").forward(request, response);
+
+
+        if (request.getSession().getAttribute("loggedUser") == null) {
+
+            response.sendRedirect("login.jsp");
+
+        } else {
+
+            request.getRequestDispatcher("/client-panel.jsp").forward(request, response);
+        }
     }
 }

@@ -20,7 +20,16 @@ public class CreateVeterinarianServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("form-veterinarian.jsp").forward(req,resp);
+
+
+        if (req.getSession().getAttribute("loggedUser") == null) {
+
+            resp.sendRedirect("login.jsp");
+
+        } else {
+
+            req.getRequestDispatcher("form-veterinarian.jsp").forward(req,resp);
+        }
     }
 
     @Override
@@ -63,12 +72,12 @@ public class CreateVeterinarianServlet extends HttpServlet {
                 new UserDao().deleteUserById(userIdConvert);
             }
 
-            resp.sendRedirect("/");
+            resp.sendRedirect("/list-veterinarians");
         } else {
 
             System.out.println("UPDATE VETERINARIAN LORO");
             new VeterinarianDao().updateVeterinarian(new Veterinarian(address,phone,id));
-            resp.sendRedirect("/");
+            resp.sendRedirect("/list-veterinarians");
         }
     }
 }

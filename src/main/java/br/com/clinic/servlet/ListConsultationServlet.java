@@ -15,7 +15,16 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/list-consultation")
 public class ListConsultationServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("list-consultation.jsp").forward(req, resp);
+
+
+        if (req.getSession().getAttribute("loggedUser") == null) {
+
+            resp.sendRedirect("login.jsp");
+
+        } else {
+
+            req.getRequestDispatcher("list-consultation.jsp").forward(req, resp);
+        }
     }
 
     @Override

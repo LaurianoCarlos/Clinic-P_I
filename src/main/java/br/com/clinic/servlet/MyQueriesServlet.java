@@ -17,10 +17,18 @@ public class MyQueriesServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String idClient = req.getParameter("idAnimal");
-        List<Consultation> consultations = new ConsultationDao().findAllConsultationByAnimalId(idClient);
-        req.setAttribute("consultations", consultations);
 
-        req.getRequestDispatcher("my-queries.jsp").forward(req, resp);
+        if (req.getSession().getAttribute("loggedUser") == null) {
+
+            resp.sendRedirect("login.jsp");
+
+        } else {
+
+            String idClient = req.getParameter("idAnimal");
+            List<Consultation> consultations = new ConsultationDao().findAllConsultationByAnimalId(idClient);
+            req.setAttribute("consultations", consultations);
+
+            req.getRequestDispatcher("my-queries.jsp").forward(req, resp);
+        }
     }
 }

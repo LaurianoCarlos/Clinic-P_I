@@ -17,10 +17,19 @@ import java.util.List;
 public class GenerateQueries extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Veterinarian> veterinarians = new VeterinarianDao().findAllVeterinarian();
-        req.setAttribute("veterinarians", veterinarians);
 
-        req.getRequestDispatcher("/form-generate-queries.jsp").forward(req, resp);
+
+        if (req.getSession().getAttribute("loggedUser") == null) {
+
+            resp.sendRedirect("login.jsp");
+
+        } else {
+
+            List<Veterinarian> veterinarians = new VeterinarianDao().findAllVeterinarian();
+            req.setAttribute("veterinarians", veterinarians);
+
+            req.getRequestDispatcher("/form-generate-queries.jsp").forward(req, resp);
+        }
     }
 
     @Override

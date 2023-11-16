@@ -19,7 +19,16 @@ public class CreateClientServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("form-client.jsp").forward(req,resp);
+
+
+        if (req.getSession().getAttribute("loggedUser") == null) {
+
+            resp.sendRedirect("login.jsp");
+
+        } else {
+
+            req.getRequestDispatcher("form-client.jsp").forward(req,resp);
+        }
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -53,7 +62,7 @@ public class CreateClientServlet extends HttpServlet {
             Client client = new Client(name, email, cpf, address, phone, userId);
 
             new ClientDao().createClient(client);
-            resp.sendRedirect("/");
+            resp.sendRedirect("/form-client.jsp");
 
         } else {
 

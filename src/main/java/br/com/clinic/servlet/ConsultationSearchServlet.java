@@ -15,19 +15,26 @@ import javax.servlet.http.HttpServletResponse;
 public class ConsultationSearchServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String dataConsulta = request.getParameter("data");
-        System.out.println( "Data da Consulta: "+ dataConsulta);
+        if (request.getSession().getAttribute("loggedUser") == null) {
 
-        if (dataConsulta != null && !dataConsulta.isEmpty()) {
-            List<Consultation> openConsultations =
-                    new ConsultationDao().getOpenConsultationsByDate(dataConsulta);
+            response.sendRedirect("login.jsp");
 
-            for (Consultation c: openConsultations) {
-                System.out.println("Consultas: " + c.getDate().toString());
+        } else {
+
+            String dataConsulta = request.getParameter("data");
+            System.out.println( "Data da Consulta: "+ dataConsulta);
+
+            if (dataConsulta != null && !dataConsulta.isEmpty()) {
+                List<Consultation> openConsultations =
+                        new ConsultationDao().getOpenConsultationsByDate(dataConsulta);
+
+                for (Consultation c: openConsultations) {
+                    System.out.println("Consultas: " + c.getDate().toString());
+                }
+                request.setAttribute("openConsultations", openConsultations);
             }
-            request.setAttribute("openConsultations", openConsultations);
-        }
 
-        request.getRequestDispatcher("list-query.jsp").forward(request, response);
+            request.getRequestDispatcher("list-query.jsp").forward(request, response);
+        }
     }
 }
