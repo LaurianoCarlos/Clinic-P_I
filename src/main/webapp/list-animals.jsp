@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Animais do Cliente</title>
+    <link rel="icon" type="image/x-icon" href="/resources/img/favicon-32x32.png">
     <link rel="stylesheet"
           href="/webjars/bootstrap/5.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/resources/css/index.css">
@@ -74,11 +75,30 @@
                         </form>
                     </td>
                     <td>
-                        <form action="/delete-animal" method="post">
-                            <input type="hidden" name="idAnimal" value="${animal.id}">
-                            <input type="hidden" name="idClient" value="${clientId}">
-                            <button type="submit" class="btn btn-danger">Excluir</button>
-                        </form>
+                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-${client.id}">
+                            <i class="far fa-trash-alt"></i> Excluir
+                        </button>
+                        <div class="modal fade " id="deleteModal-${client.id}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <form action="/delete-animal" method="POST">
+                                        <input type="hidden" name="idAnimal" value="${animal.id}">
+                                        <input type="hidden" name="idClient" value="${clientId}">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel">Confirmação de Exclusão</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Tem certeza de que deseja excluir este animal?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             </c:forEach>

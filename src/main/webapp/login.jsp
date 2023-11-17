@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PI - Clínica</title>
+    <link rel="icon" type="image/x-icon" href="/resources/img/favicon-32x32.png">
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/resources/css/index.css">
 </head>
