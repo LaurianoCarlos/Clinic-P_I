@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clinica Senac Sul</title>
+    <link rel="icon" type="image/x-icon" href="/resources/img/favicon-32x32.png">
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/resources/css/index.css">
 </head>
@@ -12,14 +13,6 @@
 <div id="header-container"></div>
 <!--Pagina Principal-->
 <main>
-    <h1>TESTE DE DESENVOLVIMENTO</h1>
-    <p><a href="http://localhost:8080/form-client.jsp">Cadastrar Clientes</a></p>
-    <p><a href="http://localhost:8080/list-clients">Listar Clientes</a></p>
-    <p><a href="http://localhost:8080/list-consultation">Listar Consultas</a></p>
-    <p><a href="http://localhost:8080/list-veterinarians">Listar Veterinarios</a></p>
-    <p><a href="http://localhost:8080/list-attendants">Listar Atendentes</a></p>
-    <p><a href="http://localhost:8080/gerenate-queries">Criar Consultas</a></p>
-    <p><a href="http://localhost:8080/console" target="_blank">Acessar Banco</a></p>
     <!--Carrossel-->
     <section>
         <div id="myCarousel" class="carousel slide mb-5"
@@ -46,7 +39,7 @@
                             <p>Seu parceiro peludo merece o melhor
                                 cuidado.</p>
                             <p><a class="btn btn-lg btn-primary"
-                                  href="#">Agende uma consulta</a></p>
+                                  href="/login">Agende uma consulta</a></p>
                         </div>
                     </div>
                 </div>
@@ -63,7 +56,7 @@
                                 para manter seu animal de estimação
                                 saudável e feliz.</p>
                             <p><a class="btn btn-lg btn-primary"
-                                  href="#">Saiba mais</a></p>
+                                  href="#servicos">Saiba mais</a></p>
                         </div>
                     </div>
                 </div>
@@ -78,7 +71,7 @@
                             <p>Oferecemos um ambiente confortável e
                                 seguro para seu animal de estimação.</p>
                             <p><a class="btn btn-lg btn-primary"
-                                  href="#">Agende uma consulta</a></p>
+                                  href="/login">Agende uma consulta</a></p>
                         </div>
                     </div>
                 </div>
@@ -104,7 +97,7 @@
                     <img src="resources/img/inicial.png" alt
                          class="img-fluid w-auto">
                 </div>
-                <div class="col-md-6 mt-5 p-6">
+                <div id="dicas" class="col-md-6 mt-5 p-6">
                     <h1>Clínica Senac Sul</h1>
                     <h3>O seu companheiro merece o melhor cuidado!</h3>
                     <p>Bem-vindo à Clínica Veterinária Senac Sul, o
@@ -115,7 +108,7 @@
                         compromisso inabalável com a saúde e o bem-estar
                         dos nossos pacientes peludos.</p>
 
-                    <a class="btn btn-secondary btn-lg" href="#"
+                    <a class="btn btn-secondary btn-lg" href="#servicos"
                        role="button">Veja nossos serviços</a>
                 </div>
             </div>
@@ -125,7 +118,7 @@
     <section>
         <div class="container mt-5 pt-7 mb-4">
             <div class="row align-items-center">
-                <div class="col-md-6 mt-5">
+                <div id="sobre" class="col-md-6 mt-5">
                     <h2>Sobre Nós</h2>
                     <p>Na Clínica Veterinária Senac Sul, a nossa paixão
                         por animais é o nosso motor. Desde a nossa
@@ -141,7 +134,7 @@
                         Acreditamos que todos os animais merecem amor,
                         respeito e atenção especial.</p>
 
-                    <a class="btn btn-secondary btn-lg" href="#"
+                    <a class="btn btn-secondary btn-lg" href="#servicos"
                        role="button">Veja nossos serviços</a>
                 </div>
                 <div class="col-md-6">
@@ -154,7 +147,7 @@
     <!--Serviços-->
     <section>
         <div class="container mt-5 pt-7">
-            <h3 class="h1 text-center">Nossos Serviços Veterinários</h3>
+            <h3 class="h1 text-center" id="servicos">Nossos Serviços Veterinários</h3>
             <div class="row justify-content-center">
                 <div class="col-md-4 p-3">
                     <div
@@ -169,7 +162,7 @@
                                 experientes estão disponíveis para
                                 cuidar da saúde de seus animais de
                                 estimação.</p>
-                            <a class="btn btn-secondary" href="#">Agendar
+                            <a class="btn btn-secondary" href="/login">Agendar
                                 Consulta</a>
                         </div>
                     </div>
@@ -188,7 +181,7 @@
                                 equipamentos modernos e cuidado
                                 excepcional para garantir a saúde do seu
                                 animal de estimação.</p>
-                            <a class="btn btn-secondary" href="#">Agendar
+                            <a class="btn btn-secondary" href="/login">Agendar
                                 Cirurgia</a>
                         </div>
                     </div>
@@ -204,7 +197,7 @@
                             <p class="card-text">Mantenha seus animais
                                 de estimação protegidos com nossos
                                 serviços de vacinação.</p>
-                            <a class="btn btn-secondary" href="#">Agendar
+                            <a class="btn btn-secondary" href="/login">Agendar
                                 Vacinação</a>
                         </div>
                     </div>
