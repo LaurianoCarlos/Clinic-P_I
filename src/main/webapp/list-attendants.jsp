@@ -5,7 +5,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Atendentes</title>
-    <link rel="icon" type="image/x-icon" href="/resources/img/favicon-32x32.png">
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="/resources/css/index.css">

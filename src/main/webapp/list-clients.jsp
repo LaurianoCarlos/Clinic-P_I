@@ -82,6 +82,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <p>Tem certeza de que deseja excluir este cliente?</p>
+                                        <p>${client.name}</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

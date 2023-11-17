@@ -1,11 +1,11 @@
 <%@ page import="br.com.clinic.model.Client" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html lang="pt">
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Consultation Results</title>
-    <link rel="icon" type="image/x-icon" href="/resources/img/favicon-32x32.png">
+    <title>Lista de Consultas</title>
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="/resources/css/index.css">
@@ -44,7 +44,7 @@
         <table class="table table-bordered">
             <thead class="thead-dark">
                 <tr>
-                    <th>Data</th>
+                    <th>Data  e  Hora</th>
                     <c:if test="${not empty admin}">
                         <th>Atribuir Diagnóstico</th>
                     </c:if>
@@ -54,7 +54,7 @@
             </thead>
             <c:forEach items="${consultations}" var="consulta">
                 <tr>
-                    <td>${consulta.date}</td>
+                    <td> <fmt:formatDate value="${consulta.date}" pattern="dd/MM/yyyy HH:mm:ss" /></td>
                     <c:if test="${not empty admin}">
                         <td>
                             <form action="/create-report" method="get">
@@ -70,7 +70,7 @@
                                 Desmarcar Consulta
                             </button>
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
+                                <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Desmarcar Consulta</h5>
@@ -78,6 +78,8 @@
                                         </div>
                                         <div class="modal-body">
                                             <p>Tem certeza de deseja desmarcar a consulta?</p>
+                                            <p class="fw-bold">Data e Hora</p>
+                                            <p> <fmt:formatDate value="${consulta.date}" pattern="dd/MM/yyyy HH:mm:ss" /></p>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
