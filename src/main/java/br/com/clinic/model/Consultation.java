@@ -24,6 +24,12 @@ public class Consultation {
         this.Date = date;
         this.idClient = idClient;
     }
+    public Consultation(String veterinarianName,String id, Date date) {
+        this.veterinarianName = veterinarianName;
+        this.id = id;
+        this.Date = date;
+
+    }
 
     public Consultation(Date date, String idAnimal, String idClient, String idVeterinarian) {
         this.Date = date;
@@ -101,6 +107,14 @@ public class Consultation {
 
     public void setVeterinarianName(String veterinarianName) {
         this.veterinarianName = veterinarianName;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
 

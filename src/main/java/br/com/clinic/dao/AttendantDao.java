@@ -1,6 +1,7 @@
 package br.com.clinic.dao;
 
 import br.com.clinic.model.Attendant;
+import br.com.clinic.model.Client;
 import br.com.clinic.model.Veterinarian;
 
 import java.sql.Connection;
@@ -132,5 +133,42 @@ public class AttendantDao {
             System.out.println("ERRO UPDATE ATTENDANT");
             System.out.println(e.getMessage());
         }
+    }
+    public Attendant getAttendantByUserID(String attendantUserId){
+
+        String sql = "SELECT * FROM ATTENDANT WHERE USER_ID = ?";
+
+        try {
+            Connection connection = DatabaseDao.getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, attendantUserId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            Attendant attendants = null;
+
+            while (resultSet.next()) {
+                String id = resultSet.getString("ID");
+                String name = resultSet.getString("NAME");
+                String cpf = resultSet.getString("CPF");
+                String email = resultSet.getString("EMAIL");
+                String address = resultSet.getString("ADDRESS");
+                String phone = resultSet.getString("PHONE");
+                String userId = resultSet.getString("USER_ID");
+
+                attendants = new Attendant(id, name, email, cpf, address, phone, userId);
+            }
+            DatabaseDao.disconnect(connection);
+            System.out.println("CREATE successfully");
+
+            return attendants;
+
+        }catch (SQLException e){
+
+            System.out.println("ERROR" +  e.getMessage());
+        }
+        return null;
     }
 }

@@ -52,13 +52,31 @@
                         </form>
                     </td>
                     <td>
-                        <form action="/delete-attendant" method="POST">
-                            <input type="hidden" name="attendantId" value="${attendant.id}">
-                            <input type="hidden" name="userId" value="${attendant.userId}">
-                            <button type="submit" class="btn btn-danger btn-sm">
-                                <i class="far fa-trash-alt"></i> Apagar
-                            </button>
-                        </form>
+                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-${attendant.id}">
+                            <i class="far fa-trash-alt"></i> Apagar
+                        </button>
+                        <div class="modal fade " id="deleteModal-${attendant.id}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <form action="/delete-attendant" method="POST">
+                                        <input type="hidden" name="attendantId" value="${attendant.id}">
+                                        <input type="hidden" name="userId" value="${attendant.userId}">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel">Confirmação de Exclusão</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Tem certeza de que deseja excluir este Atendente?</p>
+                                            <p>${attendant.name}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             </c:forEach>

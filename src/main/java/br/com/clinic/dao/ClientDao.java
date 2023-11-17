@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ClientDao {
 
-    public void createClient(Client client){
+    public boolean createClient(Client client){
 
         String sql = "INSERT INTO CLIENT (NAME,EMAIL,CPF,ADDRESS,PHONE,USER_ID) VALUES (?,?,?,?,?,?)";
 
@@ -30,8 +30,11 @@ public class ClientDao {
 
             DatabaseDao.disconnect(connection);
 
+            return true;
+
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
+            return  false;
         }
     }
     public List<Client> findAllClients() {
@@ -127,7 +130,7 @@ public class ClientDao {
 
         } catch (Exception e) {
             System.out.println("ERRO UPDATE CLIENT");
-           System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
     public Client getClientByUserID(String clientUserId){

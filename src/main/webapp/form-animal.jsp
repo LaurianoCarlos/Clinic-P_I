@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
     <meta charset="UTF-8">
     <title>Formulário de Cadastro de Animal</title>
+    <link rel="icon" type="image/x-icon" href="/resources/img/favicon-32x32.png">
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/resources/css/index.css">
 </head>

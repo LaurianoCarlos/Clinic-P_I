@@ -57,12 +57,17 @@ public class CreateClientServlet extends HttpServlet {
             try {
                 userId = new UserDao().createUser(user);
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                resp.sendRedirect("/error-page.jsp");
             }
             Client client = new Client(name, email, cpf, address, phone, userId);
 
-            new ClientDao().createClient(client);
-            resp.sendRedirect("/form-client.jsp");
+            boolean createdUser =   new ClientDao().createClient(client);
+
+            if (createdUser){
+                resp.sendRedirect("/form-client.jsp");
+            }else{
+                resp.sendRedirect("erro.jsp");
+            }
 
         } else {
 

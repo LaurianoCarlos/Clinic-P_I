@@ -1,9 +1,11 @@
 package br.com.clinic.servlet;
 
+import br.com.clinic.dao.AttendantDao;
 import br.com.clinic.dao.ClientDao;
 import br.com.clinic.dao.UserDao;
 import br.com.clinic.dao.VeterinarianDao;
 import br.com.clinic.enums.UserType;
+import br.com.clinic.model.Attendant;
 import br.com.clinic.model.Client;
 import br.com.clinic.model.User;
 import br.com.clinic.model.Veterinarian;
@@ -43,13 +45,14 @@ public class LoginServlet extends HttpServlet {
                     clientLogin(req, resp, isValidUser.getId());
                     break;
                 case ATTENDANT:
-                    resp.sendRedirect("/list-attendants");
+                    attedantLogin(req, resp, isValidUser.getId());
                     break;
                 default:
-                    //invalidCredentials(req, resp);
+                    invalidCredentials(req, resp);
                     break;
             }
         } else {
+
             invalidCredentials(req, resp);
         }
     }
@@ -66,6 +69,14 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = req.getSession();
         session.setAttribute("loggedUser", client);
         resp.sendRedirect("/client-panel");
+    }
+    private void attedantLogin(HttpServletRequest req, HttpServletResponse resp, String userId) throws ServletException, IOException {
+        Attendant attendant = new AttendantDao().getAttendantByUserID(userId);
+        HttpSession session = req.getSession();
+        session.setAttribute("admin", "admin");
+        session.setAttribute("attendant", "attendant");
+        session.setAttribute("loggedUser", attendant);
+        resp.sendRedirect("/administrator-panel");
     }
     private void invalidCredentials(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String erro = "Credenciais inválidas";

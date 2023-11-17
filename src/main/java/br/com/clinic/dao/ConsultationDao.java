@@ -147,8 +147,10 @@ public class ConsultationDao {
         }
     }
     public List<Consultation> getOpenConsultationsByDate(String data) {
-        String sql = "SELECT ID, DATE, STATUS FROM CONSULTATION " +
-                "WHERE DATE >= ? AND DATE < ? AND STATUS = 'ABERTA'";
+        String sql = "SELECT C.ID, C.DATE, C.STATUS, V.NAME AS VETERINARIAN_NAME " +
+                "FROM Consultation C " +
+                "JOIN Veterinarian V ON C.id_Veterinarian = V.id " +
+                "WHERE C.date >= ? AND C.date < ? AND C.status = 'ABERTA'";
 
         try {
 
@@ -170,7 +172,8 @@ public class ConsultationDao {
             while (resultSet.next()) {
                 String id = resultSet.getString("ID");
                 Timestamp date = resultSet.getTimestamp("DATE");
-                Consultation listConsultDay = new Consultation(id,date);
+                String veterinarianName = resultSet.getString("VETERINARIAN_NAME");
+                Consultation listConsultDay = new Consultation(veterinarianName,id,date);
                 consultationList.add(listConsultDay);
             }
 

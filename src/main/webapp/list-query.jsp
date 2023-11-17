@@ -4,7 +4,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Consultation Results</title>
+    <title>Resultados da Consulta</title>
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="/resources/css/index.css">
@@ -45,6 +45,7 @@
                 <thead class="thead-dark">
                 <tr>
                     <th>Data e Hora</th>
+                    <th>Veterinário</th>
                     <th>Marcar Consulta</th>
                 </tr>
                 </thead>
@@ -55,6 +56,7 @@
                             <!--usado para formatar a data-->
                             <fmt:formatDate value="${consulta.date}" pattern="dd/MM/yyyy HH:mm:ss" />
                         </td>
+                        <td>${consulta.veterinarianName}</td>
                         <td>
                             <form action="/create-consultation" method="post">
                                 <input type="hidden" name="idConsult" value="${consulta.id}">

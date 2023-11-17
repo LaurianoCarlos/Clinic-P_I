@@ -15,6 +15,7 @@ public class Attendant {
         this.id = id;
     }
 
+
     public Attendant(String name, String cpf, String email, String address, String phone, String userId) {
         this.name = name;
         this.cpf = cpf;

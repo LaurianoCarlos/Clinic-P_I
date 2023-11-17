@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Clientes</title>
+    <link rel="icon" type="image/x-icon" href="/resources/img/favicon-32x32.png">
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <script src="/webjars/bootstrap/5.3.1/dist/js/bootstrap.min.js"></script>
@@ -66,13 +67,31 @@
                     </form>
                 </td>
                 <td>
-                    <form action="/delete-client" method="POST">
-                        <input type="hidden" name="clientId" value="${client.id}">
-                        <input type="hidden" name="userId" value="${client.userId}">
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            <i class="far fa-trash-alt"></i> Apagar
-                        </button>
-                    </form>
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-${client.id}">
+                        <i class="far fa-trash-alt"></i> Apagar
+                    </button>
+                    <div class="modal fade " id="deleteModal-${client.id}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <form action="/delete-client" method="POST">
+                                    <input type="hidden" name="clientId" value="${client.id}">
+                                    <input type="hidden" name="userId" value="${client.userId}">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel">Confirmação de Exclusão</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Tem certeza de que deseja excluir este cliente?</p>
+                                        <p>${client.name}</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
         </c:forEach>
