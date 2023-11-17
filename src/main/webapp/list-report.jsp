@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<html>
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <title>Detalhes da Consulta</title>
