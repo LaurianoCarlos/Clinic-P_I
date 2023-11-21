@@ -61,6 +61,7 @@ public class CreateVeterinarianServlet extends HttpServlet {
                 userId = new UserDao().createUser(user);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
+                resp.sendRedirect("erro.jsp");
             }
 
             String userIdConvert = String.valueOf(userId);
@@ -70,11 +71,11 @@ public class CreateVeterinarianServlet extends HttpServlet {
 
             if(!(created)){
                 new UserDao().deleteUserById(userIdConvert);
+                resp.sendRedirect("erro.jsp");
             }
 
             resp.sendRedirect("/list-veterinarians");
         } else {
-
             System.out.println("UPDATE VETERINARIAN LORO");
             new VeterinarianDao().updateVeterinarian(new Veterinarian(address,phone,id));
             resp.sendRedirect("/list-veterinarians");

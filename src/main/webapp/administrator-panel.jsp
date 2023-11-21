@@ -18,8 +18,10 @@
     <div class="text-center">
         <img class="img-fluid"  width="150" height="150" src="resources/img/veterinaria-logo.png">
     </div>
-    <p><c:out value="${sessionScope.veterinarian.name}"/></p>
-    <p>CRMV:<c:out value="${sessionScope.veterinarian.crmv}"/></p>
+    <%
+      Object attendant = request.getAttribute("attendant");
+    %>
+    <p><c:out value="${sessionScope.loggedUser.name}"/></p>
     <div class="container-fluid w-100">
         <div class="row justify-content-center">
             <div class="btn-group col-8">
@@ -30,6 +32,7 @@
             </div>
         </div>
         <hr>
+        <c:if test="${empty sessionScope.attendant}">
         <div class="row justify-content-center">
             <p>Funcionarios</p>
             <div class="btn-group col-8">
@@ -47,9 +50,11 @@
                 <a class="btn btn-secondary m-2" href="/create-veterinarian" role="button">Cadastrar Veterinarios</a>
             </div>
         </div>
+        </c:if>
     </div>
 </main>
 <div id="footer-container"></div>
 <script src="resources/js/admin/loadAdmin.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/5.3.1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

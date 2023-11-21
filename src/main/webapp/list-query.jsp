@@ -82,6 +82,7 @@
     function goBack() {
         window.history.back();
     }
+    document.getElementById('data').min = new Date().toISOString().split('T')[0];
 </script>
 <script src="resources/js/admin/loadAdmin.js"></script>
 <script type="text/javascript" src="/webjars/bootstrap/5.3.1/dist/js/bootstrap.min.js"></script>

@@ -60,7 +60,7 @@
                             <form action="/create-report" method="get">
                                 <input type="hidden" name="idConsultation" value="${consulta.id}">
                                 <input type="hidden" name="idAnimal" value="<%= idAnimal%>">
-                                <button type="submit" class="btn btn-primary">Atribuir Diagnóstico ${consulta.id}</button>
+                                <button type="submit" class="btn btn-primary">Atribuir Diagnóstico</button>
                             </form>
                         </td>
                     </c:if>

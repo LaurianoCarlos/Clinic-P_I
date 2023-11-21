@@ -1,25 +1,20 @@
-
 function buscarPorCpf() {
-    var searchCpf = document.getElementById("searchCpf").value;
+    var searchCpf = document.getElementById("searchCpf").value.toLowerCase();
     var table = document.querySelector("table");
     var rows = table.getElementsByTagName("tr");
 
-    for (var i = 1; i < rows.length; i++) { // Começando em 1 para pular o cabeçalho.
-        var td = rows[i].getElementsByTagName("td")[3]; // A coluna com CPF é a quarta (índice 3).
+    for (var i = 1; i < rows.length; i++) {
+        var td = rows[i].getElementsByTagName("td")[2];//indice 2 para a coluna do CPF.
 
         if (td) {
-            var cpf = td.textContent;
-            if (cpf.includes(searchCpf)) {
-                rows[i].style.display = "";
-            } else {
-                rows[i].style.display = "none";
-            }
+            var cpf = td.textContent.toLowerCase();
+
+            var match = cpf.includes(searchCpf);
+
+            rows[i].style.display = match ? "" : "none";
         }
     }
 }
-
-var searchButton = document.getElementById("searchButton");
-searchButton.addEventListener("click", buscarPorCpf);
 
 var searchCpf = document.getElementById("searchCpf");
 searchCpf.addEventListener("input", buscarPorCpf);

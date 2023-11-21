@@ -26,7 +26,7 @@ public class DeleteConsultationServlet extends HttpServlet {
         req.getSession().setAttribute("success", success);
         req.getSession().setAttribute("idAnimal", idAnimal);
 
-        req.getRequestDispatcher("/my-queries").forward(req, resp);
+        req.getRequestDispatcher("/list-consultation").forward(req, resp);
 
     }
 }

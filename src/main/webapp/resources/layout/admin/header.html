@@ -2,11 +2,26 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary p-2">
         <div class="container">
             <span class="navbar-brand">PAINEL ADMIN</span>
-        </div>
-        <div class="navbar navbar-expand-lg navbar-dark bg-primary p-2">
-            <c:if test="${sessionScope.loggedUser != null}">
-                <a href="/logout" class="btn btn-danger">Sair</a>
-            </c:if>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmLogoutModal">
+                Sair
+            </button>
         </div>
     </nav>
 </header>
+<div class="modal fade" id="confirmLogoutModal" tabindex="-1" aria-labelledby="confirmLogoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmLogoutModalLabel">Confirmação de Saída</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <p>Você tem certeza que deseja sair?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <a href="/logout" class="btn btn-danger">Sair</a>
+            </div>
+        </div>
+    </div>
+</div>

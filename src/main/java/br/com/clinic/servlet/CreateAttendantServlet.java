@@ -56,6 +56,7 @@ public class CreateAttendantServlet extends HttpServlet {
                 userId = new UserDao().createUser(user);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
+
             }
 
             String userIdConvert = String.valueOf(userId);
