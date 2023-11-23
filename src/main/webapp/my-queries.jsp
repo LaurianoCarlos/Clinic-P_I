@@ -25,7 +25,7 @@
     }
 %>
 <div id="header-container"></div>
-    <main>
+<main>
     <div class="container mt-4">
         <h1 class="fs-2">Lista de Consultas</h1>
         <c:if test="${not empty admin}">
@@ -41,20 +41,24 @@
             </div>
         </c:if>
 
+        <c:if test="${empty consultations}">
+            <p>Nenhuma consulta agendada</p>
+        </c:if>
+
+        <c:if test="${not empty consultations}">
         <table class="table table-bordered">
             <thead class="thead-dark">
-                <tr>
-                    <th>Data  e  Hora</th>
-                    <c:if test="${not empty admin}">
-                        <th>Atribuir Diagnóstico</th>
-                    </c:if>
-                    <th>Desmarcar Consulta</th>
-                </tr>
-
+            <tr>
+                <th>Data e Hora</th>
+                <c:if test="${not empty admin}">
+                    <th>Atribuir Diagnóstico</th>
+                </c:if>
+                <th>Desmarcar Consulta</th>
+            </tr>
             </thead>
             <c:forEach items="${consultations}" var="consulta">
                 <tr>
-                    <td> <fmt:formatDate value="${consulta.date}" pattern="dd/MM/yyyy HH:mm:ss" /></td>
+                    <td><fmt:formatDate value="${consulta.date}" pattern="dd/MM/yyyy HH:mm:ss"/></td>
                     <c:if test="${not empty admin}">
                         <td>
                             <form action="/create-report" method="get">
@@ -66,36 +70,44 @@
                     </c:if>
                     <td>
                         <div>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
                                 Desmarcar Consulta
                             </button>
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Desmarcar Consulta</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <p>Tem certeza de deseja desmarcar a consulta?</p>
                                             <p class="fw-bold">Data e Hora</p>
-                                            <p> <fmt:formatDate value="${consulta.date}" pattern="dd/MM/yyyy HH:mm:ss" /></p>
+                                            <p><fmt:formatDate value="${consulta.date}"
+                                                               pattern="dd/MM/yyyy HH:mm:ss"/></p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                Cancelar
+                                            </button>
                                             <form action="/delete-consultation" method="post">
                                                 <input type="hidden" name="idConsultation" value="${consulta.id}">
                                                 <input type="hidden" name="idAnimal" value="<%= idAnimal%>">
-                                                <button type="submit" class="btn btn-primary">Desmarcar Consulta</button>
+                                                <button type="submit" class="btn btn-primary">Desmarcar Consulta
+                                                </button>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-                           </div>
+                            </div>
                         </div>
                     </td>
                 </tr>
             </c:forEach>
+            </c:if>
         </table>
     </div>
 </main>

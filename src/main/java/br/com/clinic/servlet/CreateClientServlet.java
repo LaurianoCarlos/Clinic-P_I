@@ -32,48 +32,48 @@ public class CreateClientServlet extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String id = req.getParameter("clientId");
-
-        System.out.println("Idd: " + id);
+        System.out.println("Id: " + id);
 
         String name = req.getParameter("name");
         String cpf = req.getParameter("cpf");
         String address = req.getParameter("address");
         String phone = req.getParameter("phone");
 
-        //data User
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String userType = String.valueOf(UserType.CLIENT);
 
         User user = new User(email, password, userType);
 
+        try {
+            int userId = createUser(user);
 
-        int userId = 0;
-        if (id == null) {
-
-            userId = 0;
-            try {
-                userId = new UserDao().createUser(user);
-            } catch (SQLException e) {
-                resp.sendRedirect("/error-page.jsp");
+            if (id == null) {
+                if (!createClient(name, email, cpf, address, phone, userId)) {
+                    resp.sendRedirect("/erro");
+                } else {
+                    resp.sendRedirect("/list-clients");
+                }
+            } else {
+                updateClient(address, phone, id);
+                resp.sendRedirect("/list-clients");
             }
-            Client client = new Client(name, email, cpf, address, phone, userId);
-
-            boolean createdUser =   new ClientDao().createClient(client);
-
-            if (createdUser){
-                resp.sendRedirect("/form-client.jsp");
-            }else{
-                resp.sendRedirect("erro.jsp");
-            }
-
-        } else {
-
-            Client client = new Client(address,phone,id);
-            new ClientDao().updateClient(client);
-            resp.sendRedirect("/client-panel");
+        } catch (SQLException e) {
+            resp.sendRedirect("/erro");
         }
     }
+
+    private int createUser(User user) throws SQLException {
+        return new UserDao().createUser(user);
+    }
+
+    private boolean createClient(String name, String email, String cpf, String address, String phone, int userId) {
+        return new ClientDao().createClient(new Client(name, email, cpf, address, phone, userId));
+    }
+
+    private void updateClient(String address, String phone, String id) {
+        new ClientDao().updateClient(new Client(address, phone, id));
+    }
 }
+

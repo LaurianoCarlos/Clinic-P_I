@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 
 @WebServlet("/create-veterinarian")
@@ -34,51 +35,52 @@ public class CreateVeterinarianServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
-
-        //data update
         String id = req.getParameter("veterinarianId");
         System.out.println("Meu ID: " + id);
 
-        //data Veterinarian
         String name = req.getParameter("name");
         String crmv = req.getParameter("crmv");
         String cpf = req.getParameter("cpf");
         String address = req.getParameter("address");
         String phone = req.getParameter("phone");
-
-
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String userType = String.valueOf(UserType.VETERINARIAN);
 
-        User user = new User(email, password, userType);
-        int userId = 0;
+        try {
+            int userId = createUser(email, password, userType);
 
-        if (id == null) {
-
-            try {
-                userId = new UserDao().createUser(user);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                resp.sendRedirect("erro.jsp");
-            }
-
-            String userIdConvert = String.valueOf(userId);
-
-            Veterinarian veterinarian = new Veterinarian(name,crmv,cpf,address,email,phone,userIdConvert);
-            boolean created = new VeterinarianDao().createVeterinarian(veterinarian);
-
-            if(!(created)){
-                new UserDao().deleteUserById(userIdConvert);
-                resp.sendRedirect("erro.jsp");
+            if (id == null) {
+                if (!createVeterinarian(name, crmv, cpf, address, email, phone, String.valueOf(userId))) {
+                    resp.sendRedirect("/erro");
+                }
+            } else {
+                try {
+                    updateVeterinarian(address, phone, id);
+                } catch (Exception e) {
+                    System.out.println("Error updating veterinarian: " + e.getMessage());
+                    resp.sendRedirect("/erro");
+                }
             }
 
             resp.sendRedirect("/list-veterinarians");
-        } else {
-            System.out.println("UPDATE VETERINARIAN LORO");
-            new VeterinarianDao().updateVeterinarian(new Veterinarian(address,phone,id));
-            resp.sendRedirect("/list-veterinarians");
+        } catch (Exception e) {
+            System.out.println("Error processing veterinarian: " + e.getMessage());
+
         }
+    }
+
+    private int createUser(String email, String password, String userType) throws SQLException {
+        return new UserDao().createUser(new User(email, password, userType));
+    }
+    private boolean createVeterinarian(String name, String crmv, String cpf, String address, String email, String phone, String userIdConvert) {
+        boolean createVeterinarian = new VeterinarianDao().createVeterinarian(
+                new Veterinarian(name, crmv, cpf, address, email, phone, userIdConvert));
+
+        return createVeterinarian;
+    }
+    private void updateVeterinarian(String address, String phone, String id){
+        System.out.println("UPDATE VETERINARIAN");
+        new VeterinarianDao().updateVeterinarian(new Veterinarian(address, phone, id));
     }
 }

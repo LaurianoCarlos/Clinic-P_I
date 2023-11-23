@@ -26,9 +26,10 @@ public class CreateAttendantServlet extends HttpServlet {
 
         } else {
 
-            req.getRequestDispatcher("form-attendant.jsp").forward(req,resp);
+            req.getRequestDispatcher("form-attendant.jsp").forward(req, resp);
         }
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -41,40 +42,47 @@ public class CreateAttendantServlet extends HttpServlet {
         String cpf = req.getParameter("cpf");
         String address = req.getParameter("address");
         String phone = req.getParameter("phone");
-
-
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String userType = String.valueOf(UserType.ATTENDANT);
 
-        User user = new User(email, password, userType);
-        int userId = 0;
 
-        if (id == null) {
+        try {
+            int userId = createUser(email, password, userType);
 
-            try {
-                userId = new UserDao().createUser(user);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+            if (id == null) {
 
-            }
+               if(!createAttendant(name, cpf, email, address, phone, String.valueOf(userId))) {
+                   resp.sendRedirect("/erro");
+               }
 
-            String userIdConvert = String.valueOf(userId);
+            } else {
 
-            Attendant attendant = new Attendant(name,cpf,email,address,phone,userIdConvert);
-            boolean created = new AttendantDao().createAttendant(attendant);
-
-            if (!(created)) {
-                new UserDao().deleteUserById(userIdConvert);
+                try {
+                    updateAttendant(address, phone, id);
+                } catch (Exception e) {
+                    System.out.println("Error updating attendant: " + e.getMessage());
+                    resp.sendRedirect("/erro");
+                }
             }
 
             resp.sendRedirect("/list-attendants");
-        } else {
-
-            System.out.println("UPDATE ATTENDANT");
-            new AttendantDao().updateAttedant(new Attendant(address, phone, id));
-            resp.sendRedirect("/list-attendants");
-
+        } catch (Exception e) {
+            System.out.println("Error processing attendant: " + e.getMessage());
         }
+    }
+
+    private int createUser(String email, String password, String userType) throws Exception {
+        return new UserDao().createUser(new User(email, password, userType));
+    }
+    private boolean createAttendant(String name, String cpf, String email, String address, String phone, String userIdConvert){
+        boolean crateAttendant = new AttendantDao().createAttendant(
+                new Attendant(name, cpf, email, address, phone, userIdConvert));
+
+        return crateAttendant;
+    }
+    private void updateAttendant(String address, String phone, String id){
+        System.out.println("UPDATE ATTENDANT");
+        new AttendantDao().updateAttedant(new Attendant(address, phone, id));
     }
 }

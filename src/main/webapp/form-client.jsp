@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/resources/css/index.css">
 </head>
-<body>
 <div id="header-container"></div>
 
 <%
@@ -25,7 +24,7 @@
 <div class="container mt-4 mb-4">
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8 col-sm-10">
-            <h1 class="text-center mb-4">Cadastro de Cliente</h1>
+            <h1 class="text-center mb-4 fs-1">Cadastro de Cliente</h1>
             <form action="/create-client" method="POST">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nome:</label>
@@ -62,7 +61,18 @@
 <div class="container mt-4 mb-4">
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8 col-sm-10">
-            <h1 class="text-center mb-4">Atualizar de Cliente</h1>
+            <h1 class="text-center mb-4 fs-1">Atualizar de Cliente</h1>
+            <c:if test="${not empty admin}">
+                <div class="container text-center mt-4 mb-3">
+                    <button class="btn btn-secondary" onclick="goBack()">Voltar</button>
+                    <a href="/administrator-panel" class="btn btn-secondary">Voltar ao Painel</a>
+                </div>
+            </c:if>
+            <c:if test="${empty admin}">
+                <div class="container text-center mt-4 mb-3">
+                    <a href="/client-panel" class="btn btn-secondary">Voltar ao Painel</a>
+                </div>
+            </c:if>
             <form method="post" action="/create-client">
                 <input type="hidden" class="form-control" name="clientId" value="<%= clientId %>">
                 <div class="mb-3">
@@ -93,7 +103,17 @@
 <% } %>
 
 <div id="footer-container"></div>
-<script src="resources/js/loadIndex.js"></script>
+<c:if test="<%= clientId == null %>">
+    <script src="resources/js/loadIndex.js"></script>
+</c:if>
+<c:if test="<%= clientId != null %>">
+    <script src="resources/js/admin/loadAdmin.js"></script>
+</c:if>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 <script src="/webjars/bootstrap/5.3.1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -65,7 +65,10 @@
 <div class="container mt-4 mb-4">
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8 col-sm-10">
-            <h1 class="text-center mb-4">Formulario de atendente</h1>
+            <h1 class="text-center  mb-4 fs-1">Formulario de atendente</h1>
+            <div class="container text-center mt-4">
+                <a href="/administrator-panel" class="btn btn-secondary">Voltar ao Painel</a>
+            </div>
             <form method="post" action="/create-attendant">
                 <input type="hidden" class="form-control" name="attendantId" value="<%= attendantId %>">
                 <div class="mb-3">
