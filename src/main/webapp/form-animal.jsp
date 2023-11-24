@@ -55,6 +55,11 @@
     </div>
 </main>
 <div id="footer-container"></div>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 <script src="resources/js/admin/loadAdmin.js"></script>
 <script type="text/javascript" src="/webjars/bootstrap/5.3.1/dist/js/bootstrap.min.js"></script>
 </body>

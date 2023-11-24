@@ -16,7 +16,7 @@
     String clientId = request.getParameter("clientId");
     String name = request.getParameter("nameClient");
     String email = request.getParameter("email");
-    String cpf = request.getParameter("cpfClient");
+    String cpf = request.getParameter("cpf");
     String address = request.getParameter("address");
     String phone = request.getParameter("phone");
 %>

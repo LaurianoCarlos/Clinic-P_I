@@ -40,7 +40,14 @@
                 <a href="/client-panel" class="btn btn-secondary">Voltar ao Painel</a>
             </div>
         </c:if>
-
+        <% String deleteConsultation = (String) session.getAttribute("deleteConsultation"); %>
+        <% if (deleteConsultation != null) { %>
+        <div class="alert alert-success" role="alert">
+            <p><%= deleteConsultation %>
+            </p>
+        </div>
+        <% session.removeAttribute("deleteConsultation"); %>
+        <% } %>
         <c:if test="${empty consultations}">
             <p>Nenhuma consulta agendada</p>
         </c:if>

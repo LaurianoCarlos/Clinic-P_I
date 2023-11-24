@@ -1,0 +1,153 @@
+
+DROP TABLE IF EXISTS Report;
+
+DROP TABLE IF EXISTS Consultation;
+
+DROP TABLE IF EXISTS Attendant;
+
+DROP TABLE IF EXISTS Veterinarian;
+
+DROP TABLE IF EXISTS Animal;
+
+DROP TABLE IF EXISTS Client;
+
+DROP TABLE IF EXISTS Users;
+
+CREATE TABLE IF NOT EXISTS Users (
+  id INT AUTO_INCREMENT NOT NULL,
+  email VARCHAR(250) NOT NULL,
+  password VARCHAR(45) NOT NULL,
+  user_type VARCHAR(45) NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT email_UNIQUE UNIQUE (email)
+);
+
+CREATE TABLE IF NOT EXISTS Client (
+  id INT AUTO_INCREMENT NOT NULL,
+  name VARCHAR(250) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  cpf VARCHAR(11) NOT NULL,
+  address VARCHAR(250) NOT NULL,
+  phone VARCHAR(45) NOT NULL,
+  user_id INT,
+  PRIMARY KEY (id),
+  FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Animal (
+  id INT AUTO_INCREMENT NOT NULL,
+  name VARCHAR(250) NOT NULL,
+  specie VARCHAR(45) NOT NULL,
+  size VARCHAR(45),
+  CLIENT_ID INT NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT fk_Animal_Client1 FOREIGN KEY (CLIENT_ID) REFERENCES Client (id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Veterinarian (
+  id INT AUTO_INCREMENT NOT NULL,
+  name VARCHAR(250) NOT NULL,
+  crmv VARCHAR(10) NOT NULL UNIQUE,
+  cpf VARCHAR(11) NOT NULL UNIQUE,
+  address VARCHAR(250) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  phone VARCHAR(45) NOT NULL,
+  user_Id INT NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT fk_Veterinarian_User1 FOREIGN KEY (user_id) REFERENCES Users (id)
+  ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Attendant (
+  id INT AUTO_INCREMENT NOT NULL,
+  name VARCHAR(250) NOT NULL,
+  cpf VARCHAR(11) NOT NULL UNIQUE,
+  email VARCHAR(100) NOT NULL UNIQUE,
+ address VARCHAR(100) NOT NULL,
+  phone VARCHAR(45) NOT NULL,
+  user_Id INT NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT fk_Attendant_User1 FOREIGN KEY (user_Id) REFERENCES Users (id)
+  ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Consultation (
+  id INT AUTO_INCREMENT NOT NULL,
+  date TIMESTAMP NOT NULL,
+  id_Animal INT,
+  id_Client INT,
+  id_Veterinarian INT,
+  status VARCHAR(255) NOT NULL DEFAULT 'Agendada',
+  PRIMARY KEY (id),
+  CONSTRAINT fk_Consultation_Animal1 FOREIGN KEY (id_Animal) REFERENCES Animal (id) ON DELETE CASCADE,
+  CONSTRAINT fk_Consultation_Client1 FOREIGN KEY (id_Client) REFERENCES Client (id) ON DELETE CASCADE,
+  CONSTRAINT fk_Consultation_Veterinarian1 FOREIGN KEY (id_Veterinarian) REFERENCES Veterinarian (id) ON DELETE CASCADE
+  ON DELETE CASCADE
+);
+
+ CREATE TABLE IF NOT EXISTS Report (
+  id INT AUTO_INCREMENT NOT NULL,
+  diagnosis TEXT NOT NULL,
+  idConsultation INT NOT NULL,
+  idAnimal INT NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT fk_Report_Consultation1 FOREIGN KEY (idConsultation) REFERENCES Consultation (id),
+  CONSTRAINT fk_Report_Animal1 FOREIGN KEY (idAnimal ) REFERENCES Animal(id)
+  ON DELETE CASCADE
+);
+
+
+INSERT INTO Users (email, password, user_type) VALUES
+('cliente1@email.com', 'cliente1', 'CLIENT'),
+('cliente2@email.com', 'cliente2', 'CLIENT'),
+('cliente3@email.com', 'cliente3', 'CLIENT'),
+('cliente4@email.com', 'cliente4', 'CLIENT'),
+('cliente5@email.com', 'cliente5', 'CLIENT'),
+('cliente6@email.com', 'cliente6', 'CLIENT'),
+('cliente7@email.com', 'cliente7', 'CLIENT'),
+('cliente8@email.com', 'cliente8', 'CLIENT'),
+('cliente9@email.com', 'cliente9', 'CLIENT'),
+('cliente10@email.com', 'cliente10', 'CLIENT'),
+('atendente1@email.com', 'atendente1', 'ATTENDANT'),
+('atendente2@email.com', 'atendente2', 'ATTENDANT'),
+('veterinario1@email.com', 'veterinario1', 'VETERINARIAN'),
+('veterinario2@email.com', 'veterinario2', 'VETERINARIAN');
+
+-- Inserção de dados na tabela Client
+INSERT INTO Client (name, email, cpf, address, phone, user_id) VALUES
+('Jose Silva', 'cliente1@email.com', '12345678901', 'Rua do Cliente 1', '123456789', 1),
+('Maria Oliveira', 'cliente2@email.com', '23456789012', 'Rua do Cliente 2', '987654321', 2),
+('Carlos Santos', 'cliente3@email.com', '34567890123', 'Rua do Cliente 3', '876543210', 3),
+('Ana Rocha', 'cliente4@email.com', '45678901234', 'Rua do Cliente 4', '789012345', 4),
+('Roberto Lima', 'cliente5@email.com', '56789012345', 'Rua do Cliente 5', '234567890', 5),
+('Fernanda Souza', 'cliente6@email.com', '67890123456', 'Rua do Cliente 6', '345678901', 6),
+('Lucas Oliveira', 'cliente7@email.com', '78901234567', 'Rua do Cliente 7', '456789012', 7),
+('Mariana Silva', 'cliente8@email.com', '89012345678', 'Rua do Cliente 8', '567890123', 8),
+('Ricardo Santos', 'cliente9@email.com', '90123456789', 'Rua do Cliente 9', '678901234', 9),
+('Patricia Lima', 'cliente10@email.com', '12345678909', 'Rua do Cliente 10', '789012345', 10);
+
+-- Inserção de dados na tabela Attendant
+INSERT INTO Attendant (name, cpf, email, address, phone, user_id) VALUES
+('Atendente 1', '87654321098', 'atendente1@email.com', 'Rua do Atendente 1', '876543210', 11),
+('Atendente 2', '76543210987', 'atendente2@email.com', 'Rua do Atendente 2', '765432109', 12);
+
+-- Inserção de dados na tabela Veterinarian
+INSERT INTO Veterinarian (name, crmv, cpf, address, email, phone, user_id) VALUES
+('Veterinário 1', 'CRMV12345', '98765432109', 'Rua do Veterinário 1', 'veterinario1@email.com', '987654321', 13),
+('Veterinário 2', 'CRMV67890', '87654321098', 'Rua do Veterinário 2', 'veterinario2@email.com', '876543210', 14);
+
+-- Inserção de dados na tabela Animal
+INSERT INTO Animal (name, specie, size, CLIENT_ID) VALUES
+('Rex', 'Cachorro', 'Médio', 1),
+('Bolinha', 'Gato', 'Pequeno', 2),
+('Mel', 'Cachorro', 'Pequeno', 3),
+('Tom', 'Gato', 'Médio', 4),
+('Luna', 'Cachorro', 'Grande', 5),
+('Mia', 'Gato', 'Pequeno', 6),
+('Bob', 'Cachorro', 'Médio', 7),
+('Nina', 'Gato', 'Pequeno', 8),
+('Thor', 'Cachorro', 'Grande', 9),
+('Lola', 'Gato', 'Médio', 10);
+
+
+

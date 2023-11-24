@@ -28,10 +28,8 @@ public class ConsultationSearchServlet extends HttpServlet {
                 List<Consultation> openConsultations =
                         new ConsultationDao().getOpenConsultationsByDate(dataConsulta);
 
-                for (Consultation c: openConsultations) {
-                    System.out.println("Consultas: " + c.getDate().toString());
-                }
                 request.setAttribute("openConsultations", openConsultations);
+                request.getSession().setAttribute("success","Consulta agendada com sucesso!");
             }
 
             request.getRequestDispatcher("list-query.jsp").forward(request, response);

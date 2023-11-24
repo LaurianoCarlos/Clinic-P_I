@@ -22,11 +22,10 @@ public class DeleteConsultationServlet extends HttpServlet {
 
         new ConsultationDao().deleteConsultationById(id);
 
-        String success = "Excluido com sucesso";
-        req.getSession().setAttribute("success", success);
+        req.getSession().setAttribute("deleteConsultation", "Consulta desmarcada com sucesso!");
         req.getSession().setAttribute("idAnimal", idAnimal);
 
-        req.getRequestDispatcher("/list-consultation").forward(req, resp);
+        req.getRequestDispatcher("/my-queries").forward(req, resp);
 
     }
 }

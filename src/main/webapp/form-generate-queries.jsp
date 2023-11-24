@@ -28,7 +28,7 @@
         <% session.removeAttribute("success"); %>
         <% } %>
         <form action="/gerenate-queries" method="POST">
-            <div class="form-group">
+            <div class="col-1 form-group">
                 <label for="year">Ano:</label>
                 <select class="form-control" id="year" name="year" required>
                     <option value="2023">2023</option>
@@ -41,7 +41,7 @@
                     <option value="2030">2030</option>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="col-1 form-group">
                 <label for="month">Mês:</label>
                 <select class="form-control" id="month" name="month" required>
                     <option value="1">Janeiro</option>
@@ -59,7 +59,7 @@
                 </select>
             </div>
             <label>Selecione um veterinário:</label>
-            <select name="idVeterinarian">
+            <select name="idVeterinarian" required>
                 <option>Escolha um veterinário</option>
                 <c:forEach items="${veterinarians}" var="veterinarian">
                     <option value="${veterinarian.id}">${veterinarian.name}</option>
