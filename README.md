@@ -6,6 +6,7 @@
 - [@LaurianoCarlos](https://www.github.com/LaurianoCarlos)
 - [@AnaLuciaBoehme](https://www.github.com/AnaLuciaBoehme)
 - [@BrunoOliveira](https://www.github.com/LowNur)
+- [@Joao](https://www.github.com/Joaovnb)
 
 
 ## Norma de Requisitos - Sistema de Gerenciamento de Clínica Veterinária
